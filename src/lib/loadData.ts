@@ -2,6 +2,7 @@ import eventsJson from "../data/events.json";
 import myPlanJson from "../data/my-plan.json";
 import peopleJson from "../data/people.json";
 import rulesJson from "../data/rules.json";
+import { ZodError } from "zod";
 import type {
   AppData,
   EventRecord,
@@ -17,6 +18,18 @@ interface AppDataSources {
   myPlan?: unknown;
   rules?: unknown;
 }
+
+type SafeParseSuccess = {
+  ok: true;
+  data: AppData;
+};
+
+type SafeParseFailure = {
+  ok: false;
+  errors: string[];
+};
+
+export type SafeParseAppDataResult = SafeParseSuccess | SafeParseFailure;
 
 function indexById<T extends { id: string }>(items: T[]): Record<string, T> {
   return Object.fromEntries(items.map((item) => [item.id, item]));
@@ -163,4 +176,36 @@ export function parseAppData(overrides: AppDataSources = {}): AppData {
     purchasedEvents,
     candidateEvents
   };
+}
+
+function formatError(error: unknown): string[] {
+  if (error instanceof ZodError) {
+    return error.issues.map((issue) => {
+      const path = issue.path.length > 0 ? issue.path.join(".") : "data";
+
+      return `${path}: ${issue.message}`;
+    });
+  }
+
+  if (error instanceof Error) {
+    return [error.message];
+  }
+
+  return ["Unknown data error"];
+}
+
+export function safeParseAppData(
+  overrides: AppDataSources = {}
+): SafeParseAppDataResult {
+  try {
+    return {
+      ok: true,
+      data: parseAppData(overrides)
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errors: formatError(error)
+    };
+  }
 }
