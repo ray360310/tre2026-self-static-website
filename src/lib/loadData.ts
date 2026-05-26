@@ -47,6 +47,18 @@ function assertKnownIds(
   }
 }
 
+function assertUniqueValues(values: string[], label: string): void {
+  const seen = new Set<string>();
+
+  for (const value of values) {
+    if (seen.has(value)) {
+      throw new Error(`Duplicate ${label} id: ${value}`);
+    }
+
+    seen.add(value);
+  }
+}
+
 function resolveEventIds(
   eventIds: string[],
   eventsById: Record<string, EventRecord>,
@@ -89,6 +101,10 @@ export function parseAppData(overrides: AppDataSources = {}): AppData {
   for (const event of events) {
     assertKnownIds(event.peopleIds, personIds, `event ${event.id}`, "person");
   }
+
+  assertUniqueValues(myPlan.purchasedEventIds, "my plan purchasedEventIds");
+  assertUniqueValues(myPlan.candidateEventIds, "my plan candidateEventIds");
+  assertUniqueValues(myPlan.preferredPeopleIds, "my plan preferredPeopleIds");
 
   assertKnownIds(myPlan.preferredPeopleIds, personIds, "my plan preferredPeopleIds", "person");
 

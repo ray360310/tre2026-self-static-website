@@ -107,4 +107,82 @@ describe("parseAppData", () => {
       })
     ).toThrow(/duplicate event id/i);
   });
+
+  test("throws when my plan contains duplicate event ids", () => {
+    expect(() =>
+      parseAppData({
+        myPlan: {
+          ownedCards: { gold: 1, silver: 1 },
+          purchasedEventIds: [
+            "2026-07-03-hinano-act-thanks",
+            "2026-07-03-hinano-act-thanks"
+          ],
+          candidateEventIds: [],
+          pendingCardBenefitPreferences: [],
+          preferredPeopleIds: [],
+          preferredTimeSlotNotes: []
+        }
+      })
+    ).toThrow(/duplicate my plan purchasedeventids id/i);
+  });
+
+  test("throws when event time values are malformed or reversed", () => {
+    expect(() =>
+      parseAppData({
+        events: [
+          {
+            id: "bad-time-event",
+            title: "Broken Time Event",
+            date: "2026/07/03",
+            start: "25:99",
+            end: "10:00",
+            type: "candidate",
+            peopleIds: [],
+            description: null,
+            location: null,
+            source: "test",
+            status: "planned",
+            notes: null
+          }
+        ],
+        myPlan: {
+          ownedCards: { gold: 1, silver: 1 },
+          purchasedEventIds: [],
+          candidateEventIds: ["bad-time-event"],
+          pendingCardBenefitPreferences: [],
+          preferredPeopleIds: [],
+          preferredTimeSlotNotes: []
+        }
+      })
+    ).toThrow(/hh:mm/i);
+
+    expect(() =>
+      parseAppData({
+        events: [
+          {
+            id: "reversed-time-event",
+            title: "Reversed Time Event",
+            date: "2026/07/03",
+            start: "14:00",
+            end: "13:00",
+            type: "candidate",
+            peopleIds: [],
+            description: null,
+            location: null,
+            source: "test",
+            status: "planned",
+            notes: null
+          }
+        ],
+        myPlan: {
+          ownedCards: { gold: 1, silver: 1 },
+          purchasedEventIds: [],
+          candidateEventIds: ["reversed-time-event"],
+          pendingCardBenefitPreferences: [],
+          preferredPeopleIds: [],
+          preferredTimeSlotNotes: []
+        }
+      })
+    ).toThrow(/end time must be after start time/i);
+  });
 });
