@@ -1,0 +1,27 @@
+{
+  "ownedCards": {
+    "gold": 1,
+    "silver": 1
+  },
+  "purchasedEventIds": [
+    "2026-07-03-hinano-act-thanks",
+    "2026-07-03-kohana-dream-thanks"
+  ],
+  "candidateEventIds": [],
+  "pendingCardBenefitPreferences": [
+    {
+      "cardType": "gold",
+      "preferredPeopleIds": [],
+      "desiredTimeSlots": [],
+      "notes": null
+    },
+    {
+      "cardType": "silver",
+      "preferredPeopleIds": [],
+      "desiredTimeSlots": [],
+      "notes": null
+    }
+  ],
+  "preferredPeopleIds": [],
+  "preferredTimeSlotNotes": []
+}

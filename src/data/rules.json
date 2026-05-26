@@ -1,0 +1,6 @@
+{
+  "overlapRequiresSameDate": true,
+  "overlapRequiresTimeWindowIntersection": true,
+  "goldCardConflictEventIds": [],
+  "silverCardConflictEventIds": []
+}
