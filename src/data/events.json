@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2026-07-03-hinano-act-thanks",
+    "title": "ACT 激情水鑽感謝祭",
+    "date": "2026/07/03",
+    "start": "13:30",
+    "end": "14:10",
+    "type": "purchased",
+    "peopleIds": ["hinano-kanon"],
+    "description": null,
+    "location": null,
+    "source": "seed",
+    "status": "confirmed",
+    "notes": null
+  },
+  {
+    "id": "2026-07-03-kohana-dream-thanks",
+    "title": "夢想企画感謝祭",
+    "date": "2026/07/03",
+    "start": "15:45",
+    "end": "16:35",
+    "type": "purchased",
+    "peopleIds": ["kohana-dan"],
+    "description": null,
+    "location": null,
+    "source": "seed",
+    "status": "confirmed",
+    "notes": "白金互動"
+  }
+]
