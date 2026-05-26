@@ -38,3 +38,18 @@ Notes:
 
 - The build uses relative asset paths, so `dist/index.html` can be opened from a local bundle instead of a deployed web root.
 - If you update the JSON files, rebuild and replace the whole `dist/` folder on the phone.
+
+## GitHub Pages
+
+This repo includes a GitHub Pages workflow at `.github/workflows/deploy-pages.yml`.
+
+To publish it:
+
+1. Merge your working branch into `main`.
+2. On GitHub, open `Settings > Pages`.
+3. Under `Build and deployment`, set `Source` to `GitHub Actions`.
+4. Push future updates to `main`.
+
+The site will publish from the GitHub Actions workflow and should appear at:
+
+- `https://ray360310.github.io/tre2026-self-static-website/`
