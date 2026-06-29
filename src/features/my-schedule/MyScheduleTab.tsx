@@ -1,58 +1,118 @@
-import { PersonCard } from "../../components/PersonCard";
-import { EventCard } from "../../components/EventCard";
-import type { AppData } from "../../types/data";
-import { CardBenefitPanel } from "./CardBenefitPanel";
+import type { OfficialEventData } from "../../types/officialData";
+import type { UserScheduleRecord } from "../../types/userSchedule";
 
 interface MyScheduleTabProps {
-  data: AppData;
+  officialData: OfficialEventData;
+  schedule: UserScheduleRecord;
+  onRemovePurchasedEntry: (entryId: string) => void;
 }
 
-export function MyScheduleTab({ data }: MyScheduleTabProps) {
-  const preferredPeople = data.myPlan.preferredPeopleIds
-    .map((personId) => data.peopleById[personId])
-    .filter((person) => person !== undefined);
+function sortPurchasedEntries(
+  left: UserScheduleRecord["purchasedEntries"][number],
+  right: UserScheduleRecord["purchasedEntries"][number]
+): number {
+  return (
+    left.date.localeCompare(right.date) ||
+    left.start.localeCompare(right.start) ||
+    left.end.localeCompare(right.end) ||
+    left.officialEventTitle.localeCompare(right.officialEventTitle, "zh-Hant")
+  );
+}
+
+export function MyScheduleTab({
+  officialData,
+  schedule,
+  onRemovePurchasedEntry
+}: MyScheduleTabProps) {
+  const purchasedEntries = [...schedule.purchasedEntries].sort(sortPurchasedEntries);
 
   return (
     <div className="space-y-4">
-      <section className="space-y-3">
-        {data.purchasedEvents.map((event) => (
-          <EventCard key={event.id} data={data} event={event} />
-        ))}
+      <section className="overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,_#132033_0%,_#1e4f7a_48%,_#d8eef8_100%)] px-5 py-5 text-white shadow-[0_28px_60px_rgba(24,57,94,0.22)]">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-100/90">
+          My Purchased Schedule
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold">已購活動清單</h2>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-cyan-50/90">
+          這裡會顯示你從 tab3 加入的已購活動，依實際日期與時間排序。
+        </p>
       </section>
       <section className="space-y-3">
         <div className="space-y-1">
-          <h3 className="text-sm font-semibold text-slate-900">卡片福利</h3>
-          <p className="text-sm text-slate-500">保留待選時段，避免和已購活動撞期。</p>
+          <h3 className="text-sm font-semibold text-slate-900">我的已購活動</h3>
+          <p className="text-sm text-slate-500">目前只會列出你實際加入的官方活動場次。</p>
         </div>
-        {data.myPlan.pendingCardBenefitPreferences.map((preference) => (
-          <CardBenefitPanel
-            key={preference.cardType}
-            data={data}
-            preference={preference}
-          />
-        ))}
-      </section>
-      <section className="space-y-3">
-        <div className="space-y-1">
-          <h3 className="text-sm font-semibold text-slate-900">想選的人與時段</h3>
-          <p className="text-sm text-slate-500">先把理想人選與時段寫在這裡，之後再比對衝突。</p>
-        </div>
-        {preferredPeople.length > 0 ? (
-          <div className="space-y-2">
-            {preferredPeople.map((person) => (
-              <PersonCard key={person.id} person={person} />
-            ))}
+        {purchasedEntries.length > 0 ? (
+          <div className="space-y-3">
+            {purchasedEntries.map((entry) => {
+              const officialEvent = officialData.events.find(
+                (event) => event.id === entry.officialEventId
+              );
+
+              return (
+                <article
+                  key={entry.id}
+                  className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-slate-200/80"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="space-y-1">
+                      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-700">
+                        {entry.vendorName ?? "官方活動"}
+                      </p>
+                      <h3 className="text-base font-semibold text-slate-900">
+                        {entry.officialEventTitle}
+                      </h3>
+                      <p className="text-sm font-medium text-slate-700">
+                        {entry.selectionLabel}
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        {entry.date} {entry.start}-{entry.end}
+                      </p>
+                      {entry.peopleNames.length > 0 ? (
+                        <p className="text-sm text-slate-500">
+                          {entry.peopleNames.join("、")}
+                        </p>
+                      ) : null}
+                    </div>
+                    <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-semibold text-cyan-900">
+                      已加入
+                    </span>
+                  </div>
+                  <div className="mt-3 flex justify-end">
+                    <button
+                      type="button"
+                      aria-label={`刪除 ${entry.officialEventTitle}`}
+                      onClick={() => onRemovePurchasedEntry(entry.id)}
+                      className="rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white"
+                    >
+                      刪除
+                    </button>
+                  </div>
+                  {entry.notes ? (
+                    <p className="mt-3 text-sm text-cyan-800">{entry.notes}</p>
+                  ) : null}
+                  {officialEvent?.fullContent ? (
+                    <p className="mt-3 line-clamp-4 whitespace-pre-wrap text-sm text-slate-600">
+                      {officialEvent.fullContent}
+                    </p>
+                  ) : null}
+                  <a
+                    href={entry.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex text-sm font-semibold text-amber-700 underline decoration-amber-300 underline-offset-4"
+                  >
+                    查看官方頁面
+                  </a>
+                </article>
+              );
+            })}
           </div>
         ) : (
-          <p className="text-sm text-slate-600">尚未設定想選的人員。</p>
+          <p className="rounded-[1.25rem] bg-white px-4 py-4 text-sm text-slate-600 ring-1 ring-slate-200">
+            尚未加入已購活動
+          </p>
         )}
-        {data.myPlan.preferredTimeSlotNotes.length > 0 ? (
-          <ul className="space-y-2 rounded-[1.25rem] bg-slate-50 px-4 py-4 text-sm text-slate-600 ring-1 ring-slate-200">
-            {data.myPlan.preferredTimeSlotNotes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        ) : null}
       </section>
     </div>
   );
