@@ -1,76 +1,89 @@
-import type { EventRecord } from "../../types/data";
-
 interface CatalogFiltersProps {
-  dates: string[];
-  people: Array<{ id: string; name: string }>;
-  types: EventRecord["type"][];
-  selectedDate: string;
-  selectedPersonId: string;
-  selectedType: EventRecord["type"] | "";
-  onDateChange: (value: string) => void;
-  onPersonChange: (value: string) => void;
-  onTypeChange: (value: EventRecord["type"] | "") => void;
+  vendors: string[];
+  actresses: string[];
+  priceTags: string[];
+  selectedVendor: string;
+  selectedActress: string;
+  selectedPriceTag: string;
+  onVendorChange: (value: string) => void;
+  onActressChange: (value: string) => void;
+  onPriceTagChange: (value: string) => void;
+  onReset: () => void;
 }
 
 export function CatalogFilters({
-  dates,
-  people,
-  types,
-  selectedDate,
-  selectedPersonId,
-  selectedType,
-  onDateChange,
-  onPersonChange,
-  onTypeChange
+  vendors,
+  actresses,
+  priceTags,
+  selectedVendor,
+  selectedActress,
+  selectedPriceTag,
+  onVendorChange,
+  onActressChange,
+  onPriceTagChange,
+  onReset
 }: CatalogFiltersProps) {
   return (
-    <div className="grid gap-3 rounded-[1.25rem] bg-slate-50 px-4 py-3 ring-1 ring-slate-200">
+    <div className="grid gap-3 rounded-[1.5rem] bg-[linear-gradient(180deg,_rgba(255,255,255,0.96)_0%,_rgba(255,247,239,0.96)_100%)] px-4 py-4 shadow-[0_18px_40px_rgba(148,84,24,0.08)] ring-1 ring-amber-100">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-700">
+            Filter
+          </p>
+          <h2 className="text-base font-semibold text-slate-950">快速篩選官方活動</h2>
+        </div>
+        <button
+          type="button"
+          onClick={onReset}
+          className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 ring-1 ring-slate-200"
+        >
+          清除條件
+        </button>
+      </div>
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-semibold text-slate-900">日期篩選</span>
+        <span className="text-sm font-semibold text-slate-900">廠商篩選</span>
         <select
-          aria-label="日期篩選"
-          value={selectedDate}
-          onChange={(event) => onDateChange(event.target.value)}
+          aria-label="廠商篩選"
+          value={selectedVendor}
+          onChange={(event) => onVendorChange(event.target.value)}
           className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-200"
         >
-          <option value="">全部日期</option>
-          {dates.map((date) => (
-            <option key={date} value={date}>
-              {date}
+          <option value="">全部廠商</option>
+          {vendors.map((vendor) => (
+            <option key={vendor} value={vendor}>
+              {vendor}
             </option>
           ))}
         </select>
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-semibold text-slate-900">人物篩選</span>
+        <span className="text-sm font-semibold text-slate-900">女優篩選</span>
         <select
-          aria-label="人物篩選"
-          value={selectedPersonId}
-          onChange={(event) => onPersonChange(event.target.value)}
+          aria-label="女優篩選"
+          value={selectedActress}
+          onChange={(event) => onActressChange(event.target.value)}
           className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-200"
         >
-          <option value="">全部人物</option>
-          {people.map((person) => (
-            <option key={person.id} value={person.id}>
-              {person.name}
+          <option value="">全部女優</option>
+          {actresses.map((actress) => (
+            <option key={actress} value={actress}>
+              {actress}
             </option>
           ))}
         </select>
       </label>
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-semibold text-slate-900">活動類型</span>
+        <span className="text-sm font-semibold text-slate-900">票種篩選</span>
         <select
-          aria-label="活動類型"
-          value={selectedType}
-          onChange={(event) =>
-            onTypeChange(event.target.value as EventRecord["type"] | "")
-          }
+          aria-label="票種篩選"
+          value={selectedPriceTag}
+          onChange={(event) => onPriceTagChange(event.target.value)}
           className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-slate-200"
         >
-          <option value="">全部類型</option>
-          {types.map((type) => (
-            <option key={type} value={type}>
-              {type}
+          <option value="">全部票種</option>
+          {priceTags.map((tag) => (
+            <option key={tag} value={tag}>
+              {tag}
             </option>
           ))}
         </select>
