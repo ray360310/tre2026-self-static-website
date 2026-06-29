@@ -168,8 +168,9 @@ describe("EventCatalogTab", () => {
 
     await user.click(screen.getAllByRole("button", { name: "展開內容" })[0]);
     await user.selectOptions(screen.getByLabelText("活動人物"), "雛乃花音");
-    await user.type(screen.getByLabelText("方案名稱"), "第四場");
-    await user.type(screen.getByLabelText("活動日期"), "2026/07/03");
+    await user.selectOptions(screen.getByLabelText("方案名稱"), "其他");
+    await user.type(screen.getByLabelText("其他方案名稱"), "第四場");
+    await user.type(screen.getByLabelText("活動日期"), "2026-07-03");
     await user.type(screen.getByLabelText("開始時間"), "13:30");
     await user.type(screen.getByLabelText("結束時間"), "14:10");
     await user.click(screen.getByRole("button", { name: "加入已購" }));
@@ -188,5 +189,27 @@ describe("EventCatalogTab", () => {
     await user.click(screen.getByRole("button", { name: "移出已購" }));
 
     expect(removePurchasedEntry).toHaveBeenCalledWith("dream-kohana-20260703-1545");
+  });
+
+  test("shows required markers and validation errors for missing fields", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <EventCatalogTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule()}
+        onAddPurchasedEntry={() => undefined}
+        onRemovePurchasedEntry={() => undefined}
+      />
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[0]);
+    await user.click(screen.getByRole("button", { name: "加入已購" }));
+
+    expect(screen.getAllByText("*必填").length).toBeGreaterThan(0);
+    expect(screen.getByText("請選擇方案名稱")).toBeInTheDocument();
+    expect(screen.getByText("請選擇活動日期")).toBeInTheDocument();
+    expect(screen.getByText("請選擇開始時間")).toBeInTheDocument();
+    expect(screen.getByText("請選擇結束時間")).toBeInTheDocument();
   });
 });

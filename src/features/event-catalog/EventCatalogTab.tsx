@@ -13,12 +13,17 @@ interface EventCatalogTabProps {
 
 interface PurchasedEntryDraft {
   personName: string;
-  planName: string;
+  planOption: string;
+  customPlanName: string;
   date: string;
   start: string;
   end: string;
   notes: string;
 }
+
+type DraftFieldError = Partial<
+  Record<"personName" | "planName" | "date" | "start" | "end", string>
+>;
 
 function collectSortedUnique(values: Array<string | null | undefined>): string[] {
   return [...new Set(values.filter((value): value is string => Boolean(value && value.trim())))]
@@ -37,6 +42,43 @@ function tagClasses(tone: "vendor" | "actress" | "price"): string {
   return "bg-rose-100 text-rose-900";
 }
 
+function extractPlanOptions(fullContent: string): string[] {
+  const options = new Set<string>();
+  const patterns = [
+    /〖([^〗]{1,30})〗/gu,
+    /✨([^✨\n]{1,30})✨/gu,
+    /♡([^♡\n]{1,30})/gu
+  ];
+
+  for (const pattern of patterns) {
+    for (const match of fullContent.matchAll(pattern)) {
+      const value = match[1]?.trim();
+
+      if (value && !/活動地點|正式售票|提醒|注意|福利內容|限定福利|須知/u.test(value)) {
+        options.add(value);
+      }
+    }
+  }
+
+  return [...options].slice(0, 12);
+}
+
+function normalizeDateForInput(date: string): string {
+  return date.replaceAll("/", "-");
+}
+
+function normalizeDateForStorage(date: string): string {
+  return date.replaceAll("-", "/");
+}
+
+function getResolvedPlanName(draft: PurchasedEntryDraft): string {
+  if (draft.planOption === "其他") {
+    return draft.customPlanName.trim();
+  }
+
+  return draft.planOption.trim();
+}
+
 export function EventCatalogTab({
   officialData,
   schedule,
@@ -48,6 +90,7 @@ export function EventCatalogTab({
   const [selectedPriceTag, setSelectedPriceTag] = useState("");
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
   const [draftsByEventId, setDraftsByEventId] = useState<Record<string, PurchasedEntryDraft>>({});
+  const [errorsByEventId, setErrorsByEventId] = useState<Record<string, DraftFieldError>>({});
   const vendors = collectSortedUnique(officialData.events.map((event) => event.vendorName));
   const actresses = collectSortedUnique(officialData.events.flatMap((event) => event.actressNames));
   const priceTags = collectSortedUnique(officialData.events.flatMap((event) => event.priceTags));
@@ -55,7 +98,8 @@ export function EventCatalogTab({
   const getDraft = (eventId: string, actressNames: string[]): PurchasedEntryDraft =>
     draftsByEventId[eventId] ?? {
       personName: actressNames[0] ?? "",
-      planName: "",
+      planOption: "",
+      customPlanName: "",
       date: "",
       start: "",
       end: "",
@@ -75,10 +119,36 @@ export function EventCatalogTab({
         [field]: value
       }
     }));
+    setErrorsByEventId((current) => {
+      if (!current[eventId]) {
+        return current;
+      }
+
+      const next = { ...current };
+      const nextErrors = { ...next[eventId] };
+      const errorField =
+        field === "planOption" || field === "customPlanName"
+          ? "planName"
+          : field === "personName" || field === "date" || field === "start" || field === "end"
+            ? field
+            : null;
+
+      if (errorField) {
+        delete nextErrors[errorField];
+      }
+
+      next[eventId] = nextErrors;
+      return next;
+    });
   };
 
   const clearDraft = (eventId: string) => {
     setDraftsByEventId((current) => {
+      const next = { ...current };
+      delete next[eventId];
+      return next;
+    });
+    setErrorsByEventId((current) => {
       const next = { ...current };
       delete next[eventId];
       return next;
@@ -123,18 +193,45 @@ export function EventCatalogTab({
 
   const handleAddEntry = (event: OfficialEventData["events"][number]) => {
     const draft = getDraft(event.id, event.actressNames);
+    const resolvedPlanName = getResolvedPlanName(draft);
+    const nextErrors: DraftFieldError = {};
 
-    if (!draft.personName || !draft.planName.trim() || !draft.date || !draft.start || !draft.end) {
+    if (!draft.personName) {
+      nextErrors.personName = "請選擇活動人物";
+    }
+
+    if (!resolvedPlanName) {
+      nextErrors.planName = "請選擇方案名稱";
+    }
+
+    if (!draft.date) {
+      nextErrors.date = "請選擇活動日期";
+    }
+
+    if (!draft.start) {
+      nextErrors.start = "請選擇開始時間";
+    }
+
+    if (!draft.end) {
+      nextErrors.end = "請選擇結束時間";
+    }
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrorsByEventId((current) => ({
+        ...current,
+        [event.id]: nextErrors
+      }));
       return;
     }
 
-    const normalizedPlanName = draft.planName.trim();
+    const normalizedPlanName = resolvedPlanName;
+    const normalizedDate = normalizeDateForStorage(draft.date);
     const selectionLabel = `${draft.personName} ${normalizedPlanName}`;
     const entryId = [
       event.id,
       draft.personName,
       normalizedPlanName,
-      draft.date,
+      normalizedDate,
       draft.start
     ]
       .join("-")
@@ -148,7 +245,7 @@ export function EventCatalogTab({
       officialEventId: event.id,
       officialEventTitle: event.title,
       selectionLabel,
-      date: draft.date,
+      date: normalizedDate,
       start: draft.start,
       end: draft.end,
       vendorName: event.vendorName,
@@ -208,6 +305,8 @@ export function EventCatalogTab({
             (entry) => entry.officialEventId === event.id
           );
           const draft = getDraft(event.id, event.actressNames);
+          const errors = errorsByEventId[event.id] ?? {};
+          const planOptions = extractPlanOptions(event.fullContent);
 
           return (
             <article
@@ -312,7 +411,9 @@ export function EventCatalogTab({
                       ) : null}
                       <div className="mt-3 grid gap-3">
                         <label className="flex flex-col gap-1">
-                          <span className="text-xs font-semibold text-slate-700">活動人物</span>
+                          <span className="text-xs font-semibold text-slate-700">
+                            活動人物 <span className="text-rose-600">*必填</span>
+                          </span>
                           <select
                             aria-label="活動人物"
                             value={draft.personName}
@@ -333,32 +434,69 @@ export function EventCatalogTab({
                               </option>
                             ))}
                           </select>
+                          {errors.personName ? (
+                            <span className="text-xs font-semibold text-rose-600">
+                              {errors.personName}
+                            </span>
+                          ) : null}
                         </label>
                         <label className="flex flex-col gap-1">
-                          <span className="text-xs font-semibold text-slate-700">方案名稱</span>
-                          <input
+                          <span className="text-xs font-semibold text-slate-700">
+                            方案名稱 <span className="text-rose-600">*必填</span>
+                          </span>
+                          <select
                             aria-label="方案名稱"
-                            type="text"
-                            value={draft.planName}
+                            value={draft.planOption}
                             onChange={(entryEvent) =>
                               setDraftField(
                                 event.id,
                                 event.actressNames,
-                                "planName",
+                                "planOption",
                                 entryEvent.target.value
                               )
                             }
                             className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
-                            placeholder="例如 第四場、方案C、白金互動"
-                          />
+                          >
+                            <option value="">請選擇方案</option>
+                            {planOptions.map((option) => (
+                              <option key={`${event.id}-${option}`} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                            <option value="其他">其他</option>
+                          </select>
+                          {draft.planOption === "其他" ? (
+                            <input
+                              aria-label="其他方案名稱"
+                              type="text"
+                              value={draft.customPlanName}
+                              onChange={(entryEvent) =>
+                                setDraftField(
+                                  event.id,
+                                  event.actressNames,
+                                  "customPlanName",
+                                  entryEvent.target.value
+                                )
+                              }
+                              className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              placeholder="請輸入方案名稱"
+                            />
+                          ) : null}
+                          {errors.planName ? (
+                            <span className="text-xs font-semibold text-rose-600">
+                              {errors.planName}
+                            </span>
+                          ) : null}
                         </label>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                           <label className="flex flex-col gap-1">
-                            <span className="text-xs font-semibold text-slate-700">活動日期</span>
+                            <span className="text-xs font-semibold text-slate-700">
+                              活動日期 <span className="text-rose-600">*必填</span>
+                            </span>
                             <input
                               aria-label="活動日期"
-                              type="text"
-                              value={draft.date}
+                              type="date"
+                              value={normalizeDateForInput(draft.date)}
                               onChange={(entryEvent) =>
                                 setDraftField(
                                   event.id,
@@ -368,14 +506,20 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
-                              placeholder="2026/07/03"
                             />
+                            {errors.date ? (
+                              <span className="text-xs font-semibold text-rose-600">
+                                {errors.date}
+                              </span>
+                            ) : null}
                           </label>
                           <label className="flex flex-col gap-1">
-                            <span className="text-xs font-semibold text-slate-700">開始時間</span>
+                            <span className="text-xs font-semibold text-slate-700">
+                              開始時間 <span className="text-rose-600">*必填</span>
+                            </span>
                             <input
                               aria-label="開始時間"
-                              type="text"
+                              type="time"
                               value={draft.start}
                               onChange={(entryEvent) =>
                                 setDraftField(
@@ -386,14 +530,20 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
-                              placeholder="13:30"
                             />
+                            {errors.start ? (
+                              <span className="text-xs font-semibold text-rose-600">
+                                {errors.start}
+                              </span>
+                            ) : null}
                           </label>
                           <label className="flex flex-col gap-1">
-                            <span className="text-xs font-semibold text-slate-700">結束時間</span>
+                            <span className="text-xs font-semibold text-slate-700">
+                              結束時間 <span className="text-rose-600">*必填</span>
+                            </span>
                             <input
                               aria-label="結束時間"
-                              type="text"
+                              type="time"
                               value={draft.end}
                               onChange={(entryEvent) =>
                                 setDraftField(
@@ -404,8 +554,12 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
-                              placeholder="14:10"
                             />
+                            {errors.end ? (
+                              <span className="text-xs font-semibold text-rose-600">
+                                {errors.end}
+                              </span>
+                            ) : null}
                           </label>
                         </div>
                         <label className="flex flex-col gap-1">
