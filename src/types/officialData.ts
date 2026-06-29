@@ -9,6 +9,7 @@ export interface OfficialEventRecord {
   id: string;
   title: string;
   bannerImageUrl: string | null;
+  detailImageUrls: string[];
   sourceUrl: string;
   vendorName: string | null;
   actressNames: string[];

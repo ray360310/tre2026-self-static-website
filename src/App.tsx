@@ -3,13 +3,23 @@ import { TabShell, type TabDefinition } from "./components/TabShell";
 import { ConflictAnalysisTab } from "./features/conflict-analysis/ConflictAnalysisTab";
 import { EventCatalogTab } from "./features/event-catalog/EventCatalogTab";
 import { MyScheduleTab } from "./features/my-schedule/MyScheduleTab";
-import { safeParseAppData } from "./lib/loadData";
+import { loadOfficialEventData, safeParseAppData } from "./lib/loadData";
 
 export default function App() {
   const result = safeParseAppData();
 
   if (!result.ok) {
     return <DataErrorState errors={result.errors} />;
+  }
+
+  let officialData;
+
+  try {
+    officialData = loadOfficialEventData();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown official data error";
+
+    return <DataErrorState errors={[message]} />;
   }
 
   const { data } = result;
@@ -30,7 +40,7 @@ export default function App() {
       id: "event-catalog",
       label: "TRE2026 活動",
       heading: "活動總覽",
-      content: <EventCatalogTab data={data} />
+      content: <EventCatalogTab officialData={officialData} />
     }
   ];
 

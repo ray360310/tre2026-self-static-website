@@ -78,6 +78,9 @@ function parseOfficialEventRecord(value: unknown): OfficialEventRecord {
     title: record.title,
     bannerImageUrl:
       typeof record.bannerImageUrl === "string" ? record.bannerImageUrl : null,
+    detailImageUrls: Array.isArray(record.detailImageUrls)
+      ? record.detailImageUrls.filter((url): url is string => typeof url === "string")
+      : [],
     sourceUrl: record.sourceUrl,
     vendorName: typeof record.vendorName === "string" ? record.vendorName : null,
     actressNames: Array.isArray(record.actressNames)
