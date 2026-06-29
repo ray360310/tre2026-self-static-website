@@ -1,5 +1,7 @@
 import eventsJson from "../data/events.json";
 import myPlanJson from "../data/my-plan.json";
+import officialEventsJson from "../data/official-events.json";
+import officialPeopleJson from "../data/official-people.json";
 import peopleJson from "../data/people.json";
 import rulesJson from "../data/rules.json";
 import { ZodError } from "zod";
@@ -10,6 +12,11 @@ import type {
   RulesRecord,
   MyPlanRecord
 } from "../types/data";
+import type {
+  OfficialEventData,
+  OfficialEventRecord,
+  OfficialPersonRecord
+} from "../types/officialData";
 import { eventsSchema, myPlanSchema, peopleSchema, rulesSchema } from "./dataSchemas";
 
 interface AppDataSources {
@@ -30,6 +37,58 @@ type SafeParseFailure = {
 };
 
 export type SafeParseAppDataResult = SafeParseSuccess | SafeParseFailure;
+
+function parseOfficialPersonRecord(value: unknown): OfficialPersonRecord {
+  if (typeof value !== "object" || value === null) {
+    throw new Error("Invalid official person record");
+  }
+
+  const record = value as Record<string, unknown>;
+
+  if (typeof record.id !== "string" || typeof record.name !== "string") {
+    throw new Error("Official person record must contain id and name");
+  }
+
+  return {
+    id: record.id,
+    name: record.name,
+    image: typeof record.image === "string" ? record.image : null,
+    sourceUrl: typeof record.sourceUrl === "string" ? record.sourceUrl : null
+  };
+}
+
+function parseOfficialEventRecord(value: unknown): OfficialEventRecord {
+  if (typeof value !== "object" || value === null) {
+    throw new Error("Invalid official event record");
+  }
+
+  const record = value as Record<string, unknown>;
+
+  if (
+    typeof record.id !== "string" ||
+    typeof record.title !== "string" ||
+    typeof record.sourceUrl !== "string" ||
+    typeof record.fullContent !== "string"
+  ) {
+    throw new Error("Official event record is missing required fields");
+  }
+
+  return {
+    id: record.id,
+    title: record.title,
+    bannerImageUrl:
+      typeof record.bannerImageUrl === "string" ? record.bannerImageUrl : null,
+    sourceUrl: record.sourceUrl,
+    vendorName: typeof record.vendorName === "string" ? record.vendorName : null,
+    actressNames: Array.isArray(record.actressNames)
+      ? record.actressNames.filter((name): name is string => typeof name === "string")
+      : [],
+    priceTags: Array.isArray(record.priceTags)
+      ? record.priceTags.filter((tag): tag is string => typeof tag === "string")
+      : [],
+    fullContent: record.fullContent
+  };
+}
 
 function indexById<T extends { id: string }>(items: T[]): Record<string, T> {
   return Object.fromEntries(items.map((item) => [item.id, item]));
@@ -208,4 +267,22 @@ export function safeParseAppData(
       errors: formatError(error)
     };
   }
+}
+
+export function loadOfficialEventData(): OfficialEventData {
+  const events = Array.isArray(officialEventsJson)
+    ? officialEventsJson.map(parseOfficialEventRecord)
+    : [];
+  const people = Array.isArray(officialPeopleJson)
+    ? officialPeopleJson.map(parseOfficialPersonRecord)
+    : [];
+
+  assertUniqueIds(events, "official event");
+  assertUniqueIds(people, "official person");
+
+  return {
+    events,
+    people,
+    peopleById: indexById(people)
+  };
 }
