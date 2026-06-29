@@ -82,6 +82,27 @@ function extractActressNamesFromMetaDescription(description: string): string[] {
   );
 }
 
+function extractActressNamesFromProfileCards(detailHtml: string): string[] {
+  const $ = load(detailHtml);
+
+  return dedupeStrings(
+    $('main a[href^="/profile/"]')
+      .map((_, anchorElement) => {
+        const anchor = $(anchorElement);
+        const explicitName = anchor.find('[translate="no"]').first().text().trim();
+
+        if (explicitName && explicitName !== "訪客") {
+          return explicitName;
+        }
+
+        const imageAlt = anchor.find('img[alt$=" 的頭像"]').first().attr("alt") ?? "";
+        return imageAlt.replace(/\s+的頭像$/, "").trim();
+      })
+      .get()
+      .filter((name) => name && name !== "訪客")
+  );
+}
+
 export function extractOfficialEventSeeds(listHtml: string): OfficialEventSeed[] {
   const $ = load(listHtml);
   const seedsByUrl = new Map<string, OfficialEventSeed>();
@@ -140,6 +161,7 @@ export function extractOfficialEventRecord(
       .map((_, imageElement) => ($(imageElement).attr("alt") ?? "").replace(/\s+的頭像$/, "").trim())
       .get()
       .filter((name) => name && name !== "訪客"),
+    ...extractActressNamesFromProfileCards(detailHtml),
     ...extractActressNamesFromMetaDescription(metaDescription)
   ]);
 

@@ -86,6 +86,65 @@ describe("jkfaceSync", () => {
     expect(record.fullContent).toContain("35000個紅鑽");
   });
 
+  test("extracts actresses from profile-card layouts when participants section is absent", () => {
+    const html = `
+      <html>
+        <head>
+          <title>夢想企画感謝祭 - JKFace 娛樂活動</title>
+          <meta
+            name="description"
+            content="2026-07-03 開跑！包括 楓富愛 與人氣 IP 都將參與【夢想企画感謝祭】。立即參加，享受最有溫度的娛樂體驗！"
+          />
+          <meta
+            property="og:image"
+            content="https://example.com/dream-banner.jpg"
+          />
+        </head>
+        <body>
+          <main>
+            <section>
+              <a href="/profile/5888981">
+                <img src="https://example.com/a.jpg" alt="楓富愛 的頭像" />
+                <span translate="no">楓富愛</span>
+              </a>
+              <a href="/profile/6229677">
+                <img src="https://example.com/b.jpg" alt="小花暖 的頭像" />
+                <span translate="no">小花暖</span>
+              </a>
+              <a href="/profile/6229676">
+                <img src="https://example.com/c.jpg" alt="東實果 的頭像" />
+                <span translate="no">東實果</span>
+              </a>
+            </section>
+            <section>
+              <img
+                src="https://example.com/detail-1.jpg"
+                alt="夢想企画感謝祭 的詳細資訊圖片"
+              />
+            </section>
+          </main>
+        </body>
+      </html>
+    `;
+
+    const record = extractOfficialEventRecord(html, {
+      title: "夢想企画感謝祭",
+      sourceUrl: "https://jkface.net/events/326",
+      bannerImageUrl: "https://example.com/list-banner.jpg",
+      vendorName: "夢想企画"
+    });
+
+    expect(record).toMatchObject({
+      id: "jkface-event-326",
+      title: "夢想企画感謝祭",
+      bannerImageUrl: "https://example.com/dream-banner.jpg",
+      sourceUrl: "https://jkface.net/events/326",
+      vendorName: "夢想企画",
+      actressNames: ["楓富愛", "小花暖", "東實果"]
+    });
+    expect(record.detailImageUrls).toEqual(["https://example.com/detail-1.jpg"]);
+  });
+
   test("builds a deduplicated people list from official event actress names", () => {
     const people = buildOfficialPeople([
       {
