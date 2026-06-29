@@ -1,10 +1,23 @@
 import { useEffect, useState } from "react";
 
 import type { OfficialEventData } from "../../types/officialData";
+import type { PurchasedScheduleEntry, UserScheduleRecord } from "../../types/userSchedule";
 import { CatalogFilters } from "./CatalogFilters";
 
 interface EventCatalogTabProps {
   officialData: OfficialEventData;
+  schedule: UserScheduleRecord;
+  onAddPurchasedEntry: (entry: PurchasedScheduleEntry) => void;
+  onRemovePurchasedEntry: (entryId: string) => void;
+}
+
+interface PurchasedEntryDraft {
+  personName: string;
+  planName: string;
+  date: string;
+  start: string;
+  end: string;
+  notes: string;
 }
 
 function collectSortedUnique(values: Array<string | null | undefined>): string[] {
@@ -24,14 +37,53 @@ function tagClasses(tone: "vendor" | "actress" | "price"): string {
   return "bg-rose-100 text-rose-900";
 }
 
-export function EventCatalogTab({ officialData }: EventCatalogTabProps) {
+export function EventCatalogTab({
+  officialData,
+  schedule,
+  onAddPurchasedEntry,
+  onRemovePurchasedEntry
+}: EventCatalogTabProps) {
   const [selectedVendor, setSelectedVendor] = useState("");
   const [selectedActress, setSelectedActress] = useState("");
   const [selectedPriceTag, setSelectedPriceTag] = useState("");
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
+  const [draftsByEventId, setDraftsByEventId] = useState<Record<string, PurchasedEntryDraft>>({});
   const vendors = collectSortedUnique(officialData.events.map((event) => event.vendorName));
   const actresses = collectSortedUnique(officialData.events.flatMap((event) => event.actressNames));
   const priceTags = collectSortedUnique(officialData.events.flatMap((event) => event.priceTags));
+
+  const getDraft = (eventId: string, actressNames: string[]): PurchasedEntryDraft =>
+    draftsByEventId[eventId] ?? {
+      personName: actressNames[0] ?? "",
+      planName: "",
+      date: "",
+      start: "",
+      end: "",
+      notes: ""
+    };
+
+  const setDraftField = (
+    eventId: string,
+    actressNames: string[],
+    field: keyof PurchasedEntryDraft,
+    value: string
+  ) => {
+    setDraftsByEventId((current) => ({
+      ...current,
+      [eventId]: {
+        ...getDraft(eventId, actressNames),
+        [field]: value
+      }
+    }));
+  };
+
+  const clearDraft = (eventId: string) => {
+    setDraftsByEventId((current) => {
+      const next = { ...current };
+      delete next[eventId];
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (selectedVendor && !vendors.includes(selectedVendor)) {
@@ -67,6 +119,44 @@ export function EventCatalogTab({ officialData }: EventCatalogTabProps) {
     setSelectedVendor("");
     setSelectedActress("");
     setSelectedPriceTag("");
+  };
+
+  const handleAddEntry = (event: OfficialEventData["events"][number]) => {
+    const draft = getDraft(event.id, event.actressNames);
+
+    if (!draft.personName || !draft.planName.trim() || !draft.date || !draft.start || !draft.end) {
+      return;
+    }
+
+    const normalizedPlanName = draft.planName.trim();
+    const selectionLabel = `${draft.personName} ${normalizedPlanName}`;
+    const entryId = [
+      event.id,
+      draft.personName,
+      normalizedPlanName,
+      draft.date,
+      draft.start
+    ]
+      .join("-")
+      .replace(/[^\p{L}\p{N}]+/gu, "-")
+      .replace(/^-+|-+$/g, "")
+      .toLowerCase();
+
+    onAddPurchasedEntry({
+      id: entryId,
+      sourceType: "official",
+      officialEventId: event.id,
+      officialEventTitle: event.title,
+      selectionLabel,
+      date: draft.date,
+      start: draft.start,
+      end: draft.end,
+      vendorName: event.vendorName,
+      peopleNames: draft.personName ? [draft.personName] : [],
+      notes: draft.notes.trim() || null,
+      sourceUrl: event.sourceUrl
+    });
+    clearDraft(event.id);
   };
 
   return (
@@ -114,6 +204,10 @@ export function EventCatalogTab({ officialData }: EventCatalogTabProps) {
         ) : null}
         {visibleEvents.map((event) => {
           const isExpanded = expandedEventId === event.id;
+          const purchasedEntries = schedule.purchasedEntries.filter(
+            (entry) => entry.officialEventId === event.id
+          );
+          const draft = getDraft(event.id, event.actressNames);
 
           return (
             <article
@@ -173,7 +267,10 @@ export function EventCatalogTab({ officialData }: EventCatalogTabProps) {
                   ))}
                 </div>
                 <div className="flex items-center justify-between gap-3 text-xs font-medium text-slate-500">
-                  <span>{event.actressNames.length} 位人物</span>
+                  <span>
+                    {event.actressNames.length} 位人物
+                    {purchasedEntries.length > 0 ? ` · 已加入 ${purchasedEntries.length} 場` : ""}
+                  </span>
                   <a
                     href={event.sourceUrl}
                     target="_blank"
@@ -185,6 +282,160 @@ export function EventCatalogTab({ officialData }: EventCatalogTabProps) {
                 </div>
                 {isExpanded ? (
                   <div className="space-y-4 border-t border-slate-200 pt-4">
+                    <div className="rounded-[1.25rem] bg-cyan-50 px-4 py-4 ring-1 ring-cyan-100">
+                      <p className="text-sm font-semibold text-slate-950">加入我的已購活動</p>
+                      {purchasedEntries.length > 0 ? (
+                        <div className="mt-3 space-y-2">
+                          {purchasedEntries.map((entry) => (
+                            <div
+                              key={entry.id}
+                              className="flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-3 ring-1 ring-cyan-100"
+                            >
+                              <div>
+                                <p className="text-sm font-semibold text-slate-900">
+                                  {entry.selectionLabel}
+                                </p>
+                                <p className="text-xs text-slate-600">
+                                  {entry.date} {entry.start}-{entry.end}
+                                </p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => onRemovePurchasedEntry(entry.id)}
+                                className="rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white"
+                              >
+                                移出已購
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                      <div className="mt-3 grid gap-3">
+                        <label className="flex flex-col gap-1">
+                          <span className="text-xs font-semibold text-slate-700">活動人物</span>
+                          <select
+                            aria-label="活動人物"
+                            value={draft.personName}
+                            onChange={(entryEvent) =>
+                              setDraftField(
+                                event.id,
+                                event.actressNames,
+                                "personName",
+                                entryEvent.target.value
+                              )
+                            }
+                            className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                          >
+                            <option value="">請選擇人物</option>
+                            {event.actressNames.map((name) => (
+                              <option key={`${event.id}-${name}`} value={name}>
+                                {name}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                        <label className="flex flex-col gap-1">
+                          <span className="text-xs font-semibold text-slate-700">方案名稱</span>
+                          <input
+                            aria-label="方案名稱"
+                            type="text"
+                            value={draft.planName}
+                            onChange={(entryEvent) =>
+                              setDraftField(
+                                event.id,
+                                event.actressNames,
+                                "planName",
+                                entryEvent.target.value
+                              )
+                            }
+                            className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                            placeholder="例如 第四場、方案C、白金互動"
+                          />
+                        </label>
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                          <label className="flex flex-col gap-1">
+                            <span className="text-xs font-semibold text-slate-700">活動日期</span>
+                            <input
+                              aria-label="活動日期"
+                              type="text"
+                              value={draft.date}
+                              onChange={(entryEvent) =>
+                                setDraftField(
+                                  event.id,
+                                  event.actressNames,
+                                  "date",
+                                  entryEvent.target.value
+                                )
+                              }
+                              className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              placeholder="2026/07/03"
+                            />
+                          </label>
+                          <label className="flex flex-col gap-1">
+                            <span className="text-xs font-semibold text-slate-700">開始時間</span>
+                            <input
+                              aria-label="開始時間"
+                              type="text"
+                              value={draft.start}
+                              onChange={(entryEvent) =>
+                                setDraftField(
+                                  event.id,
+                                  event.actressNames,
+                                  "start",
+                                  entryEvent.target.value
+                                )
+                              }
+                              className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              placeholder="13:30"
+                            />
+                          </label>
+                          <label className="flex flex-col gap-1">
+                            <span className="text-xs font-semibold text-slate-700">結束時間</span>
+                            <input
+                              aria-label="結束時間"
+                              type="text"
+                              value={draft.end}
+                              onChange={(entryEvent) =>
+                                setDraftField(
+                                  event.id,
+                                  event.actressNames,
+                                  "end",
+                                  entryEvent.target.value
+                                )
+                              }
+                              className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              placeholder="14:10"
+                            />
+                          </label>
+                        </div>
+                        <label className="flex flex-col gap-1">
+                          <span className="text-xs font-semibold text-slate-700">備註</span>
+                          <textarea
+                            aria-label="備註"
+                            value={draft.notes}
+                            onChange={(entryEvent) =>
+                              setDraftField(
+                                event.id,
+                                event.actressNames,
+                                "notes",
+                                entryEvent.target.value
+                              )
+                            }
+                            className="min-h-20 rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                            placeholder="可填集合地點、自己的備忘"
+                          />
+                        </label>
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            onClick={() => handleAddEntry(event)}
+                            className="rounded-full bg-cyan-700 px-4 py-2 text-sm font-semibold text-white"
+                          >
+                            加入已購
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                     <div className="rounded-[1.25rem] bg-slate-50 px-4 py-4">
                       <p className="mb-2 text-sm font-semibold text-slate-950">活動內容</p>
                       <p className="whitespace-pre-wrap text-sm leading-6 text-slate-700">
