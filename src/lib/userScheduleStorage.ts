@@ -1,4 +1,4 @@
-import type { PurchasedScheduleEntry, UserScheduleRecord } from "../types/userSchedule";
+import type { UserScheduleEntry, UserScheduleRecord } from "../types/userSchedule";
 
 const STORAGE_KEY = "tre2026-user-schedule";
 
@@ -11,11 +11,12 @@ export function createEmptyUserSchedule(): UserScheduleRecord {
   return {
     version: 1,
     purchasedEntries: [],
+    candidateEntries: [],
     updatedAt: null
   };
 }
 
-function isPurchasedEntry(value: unknown): value is PurchasedScheduleEntry {
+function isScheduleEntry(value: unknown): value is UserScheduleEntry {
   if (typeof value !== "object" || value === null) {
     return false;
   }
@@ -49,7 +50,10 @@ function parseSchedule(value: unknown): UserScheduleRecord {
   return {
     version: 1,
     purchasedEntries: Array.isArray(record.purchasedEntries)
-      ? record.purchasedEntries.filter(isPurchasedEntry)
+      ? record.purchasedEntries.filter(isScheduleEntry)
+      : [],
+    candidateEntries: Array.isArray(record.candidateEntries)
+      ? record.candidateEntries.filter(isScheduleEntry)
       : [],
     updatedAt: typeof record.updatedAt === "string" ? record.updatedAt : null
   };
@@ -105,7 +109,7 @@ export function saveUserSchedule(schedule: UserScheduleRecord): void {
 
 export function togglePurchasedEntry(
   schedule: UserScheduleRecord,
-  entry: PurchasedScheduleEntry
+  entry: UserScheduleEntry
 ): UserScheduleRecord {
   const hasEntry = schedule.purchasedEntries.some((item) => item.id === entry.id);
 
@@ -114,13 +118,14 @@ export function togglePurchasedEntry(
     purchasedEntries: hasEntry
       ? schedule.purchasedEntries.filter((item) => item.id !== entry.id)
       : [...schedule.purchasedEntries, entry],
+    candidateEntries: schedule.candidateEntries,
     updatedAt: new Date().toISOString()
   };
 }
 
 export function addPurchasedEntry(
   schedule: UserScheduleRecord,
-  entry: PurchasedScheduleEntry
+  entry: UserScheduleEntry
 ): UserScheduleRecord {
   if (schedule.purchasedEntries.some((item) => item.id === entry.id)) {
     return schedule;
@@ -129,6 +134,7 @@ export function addPurchasedEntry(
   return {
     version: 1,
     purchasedEntries: [...schedule.purchasedEntries, entry],
+    candidateEntries: schedule.candidateEntries,
     updatedAt: new Date().toISOString()
   };
 }
@@ -140,6 +146,35 @@ export function removePurchasedEntry(
   return {
     version: 1,
     purchasedEntries: schedule.purchasedEntries.filter((item) => item.id !== entryId),
+    candidateEntries: schedule.candidateEntries,
+    updatedAt: new Date().toISOString()
+  };
+}
+
+export function addCandidateEntry(
+  schedule: UserScheduleRecord,
+  entry: UserScheduleEntry
+): UserScheduleRecord {
+  if (schedule.candidateEntries.some((item) => item.id === entry.id)) {
+    return schedule;
+  }
+
+  return {
+    version: 1,
+    purchasedEntries: schedule.purchasedEntries,
+    candidateEntries: [...schedule.candidateEntries, entry],
+    updatedAt: new Date().toISOString()
+  };
+}
+
+export function removeCandidateEntry(
+  schedule: UserScheduleRecord,
+  entryId: string
+): UserScheduleRecord {
+  return {
+    version: 1,
+    purchasedEntries: schedule.purchasedEntries,
+    candidateEntries: schedule.candidateEntries.filter((item) => item.id !== entryId),
     updatedAt: new Date().toISOString()
   };
 }

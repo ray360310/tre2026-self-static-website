@@ -1,4 +1,4 @@
-export interface PurchasedScheduleEntry {
+export interface UserScheduleEntry {
   id: string;
   sourceType: "official";
   officialEventId: string;
@@ -15,6 +15,7 @@ export interface PurchasedScheduleEntry {
 
 export interface UserScheduleRecord {
   version: 1;
-  purchasedEntries: PurchasedScheduleEntry[];
+  purchasedEntries: UserScheduleEntry[];
+  candidateEntries: UserScheduleEntry[];
   updatedAt: string | null;
 }

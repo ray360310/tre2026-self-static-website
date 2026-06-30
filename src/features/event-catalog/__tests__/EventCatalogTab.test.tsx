@@ -64,6 +64,7 @@ function buildSchedule(overrides: Partial<UserScheduleRecord> = {}): UserSchedul
     version: 1,
     updatedAt: "2026-06-30T12:00:00.000Z",
     purchasedEntries: [],
+    candidateEntries: [],
     ...overrides
   };
 }
@@ -78,6 +79,8 @@ describe("EventCatalogTab", () => {
         schedule={buildSchedule()}
         onAddPurchasedEntry={() => undefined}
         onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
@@ -99,6 +102,8 @@ describe("EventCatalogTab", () => {
         schedule={buildSchedule()}
         onAddPurchasedEntry={() => undefined}
         onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
@@ -123,6 +128,8 @@ describe("EventCatalogTab", () => {
         schedule={buildSchedule()}
         onAddPurchasedEntry={() => undefined}
         onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
@@ -139,6 +146,8 @@ describe("EventCatalogTab", () => {
     const user = userEvent.setup();
     const addPurchasedEntry = vi.fn();
     const removePurchasedEntry = vi.fn();
+    const addCandidateEntry = vi.fn();
+    const removeCandidateEntry = vi.fn();
 
     render(
       <EventCatalogTab
@@ -163,6 +172,8 @@ describe("EventCatalogTab", () => {
         })}
         onAddPurchasedEntry={addPurchasedEntry}
         onRemovePurchasedEntry={removePurchasedEntry}
+        onAddCandidateEntry={addCandidateEntry}
+        onRemoveCandidateEntry={removeCandidateEntry}
       />
     );
 
@@ -189,6 +200,66 @@ describe("EventCatalogTab", () => {
     await user.click(screen.getByRole("button", { name: "移出已購" }));
 
     expect(removePurchasedEntry).toHaveBeenCalledWith("dream-kohana-20260703-1545");
+    expect(addCandidateEntry).not.toHaveBeenCalled();
+    expect(removeCandidateEntry).not.toHaveBeenCalled();
+  });
+
+  test("adds and removes candidate entries", async () => {
+    const user = userEvent.setup();
+    const addCandidateEntry = vi.fn();
+    const removeCandidateEntry = vi.fn();
+
+    render(
+      <EventCatalogTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule({
+          candidateEntries: [
+            {
+              id: "candidate-act-20260703-1330",
+              sourceType: "official",
+              officialEventId: "jkface-event-315",
+              officialEventTitle: "ACT 激情水鑽感謝祭",
+              selectionLabel: "雛乃花音 第四場",
+              date: "2026/07/03",
+              start: "13:30",
+              end: "14:10",
+              vendorName: "ACT",
+              peopleNames: ["雛乃花音"],
+              notes: null,
+              sourceUrl: "https://jkface.net/events/315"
+            }
+          ]
+        })}
+        onAddPurchasedEntry={() => undefined}
+        onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={addCandidateEntry}
+        onRemoveCandidateEntry={removeCandidateEntry}
+      />
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[1]);
+    await user.selectOptions(screen.getByLabelText("活動人物"), "小花暖");
+    await user.selectOptions(screen.getByLabelText("方案名稱"), "其他");
+    await user.type(screen.getByLabelText("其他方案名稱"), "白金互動");
+    await user.type(screen.getByLabelText("活動日期"), "2026-07-03");
+    await user.type(screen.getByLabelText("開始時間"), "15:45");
+    await user.type(screen.getByLabelText("結束時間"), "16:35");
+    await user.click(screen.getByRole("button", { name: "加入預選" }));
+
+    expect(addCandidateEntry).toHaveBeenCalledWith(
+      expect.objectContaining({
+        officialEventId: "jkface-event-314",
+        selectionLabel: "小花暖 白金互動",
+        date: "2026/07/03",
+        start: "15:45",
+        end: "16:35"
+      })
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[0]);
+    await user.click(screen.getByRole("button", { name: "移出預選" }));
+
+    expect(removeCandidateEntry).toHaveBeenCalledWith("candidate-act-20260703-1330");
   });
 
   test("shows required markers and validation errors for missing fields", async () => {
@@ -200,6 +271,8 @@ describe("EventCatalogTab", () => {
         schedule={buildSchedule()}
         onAddPurchasedEntry={() => undefined}
         onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 

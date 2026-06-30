@@ -71,6 +71,7 @@ function buildSchedule(overrides: Partial<UserScheduleRecord> = {}): UserSchedul
         sourceUrl: "https://jkface.net/events/315"
       }
     ],
+    candidateEntries: [],
     ...overrides
   };
 }
@@ -78,22 +79,25 @@ function buildSchedule(overrides: Partial<UserScheduleRecord> = {}): UserSchedul
 describe("MyScheduleTab", () => {
   test("shows an empty state when no purchased entries are stored", () => {
     render(
-      <MyScheduleTab
-        officialData={buildOfficialData()}
-        schedule={{ version: 1, updatedAt: null, purchasedEntries: [] }}
+        <MyScheduleTab
+          officialData={buildOfficialData()}
+        schedule={{ version: 1, updatedAt: null, purchasedEntries: [], candidateEntries: [] }}
         onRemovePurchasedEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
     expect(screen.getByText("尚未加入已購活動")).toBeInTheDocument();
+    expect(screen.getByText("尚未加入預選活動")).toBeInTheDocument();
   });
 
   test("shows stored purchased entries in chronological order", () => {
     render(
-      <MyScheduleTab
+        <MyScheduleTab
         officialData={buildOfficialData()}
         schedule={buildSchedule()}
         onRemovePurchasedEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
@@ -112,11 +116,50 @@ describe("MyScheduleTab", () => {
         officialData={buildOfficialData()}
         schedule={buildSchedule()}
         onRemovePurchasedEntry={onRemovePurchasedEntry}
+        onRemoveCandidateEntry={() => undefined}
       />
     );
 
     await user.click(screen.getByRole("button", { name: "刪除 ACT 激情水鑽感謝祭" }));
 
     expect(onRemovePurchasedEntry).toHaveBeenCalledWith("act-hinano-20260703-1330");
+  });
+
+  test("shows stored candidate entries in a separate section and allows deleting them", async () => {
+    const user = userEvent.setup();
+    const onRemoveCandidateEntry = vi.fn();
+
+    render(
+      <MyScheduleTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule({
+          candidateEntries: [
+            {
+              id: "candidate-act-20260703-1430",
+              sourceType: "official",
+              officialEventId: "jkface-event-315",
+              officialEventTitle: "ACT 激情水鑽感謝祭",
+              selectionLabel: "音無鈴 預選方案",
+              date: "2026/07/03",
+              start: "14:30",
+              end: "15:10",
+              vendorName: "ACT",
+              peopleNames: ["音無鈴"],
+              notes: "想觀察是否和其他行程衝突",
+              sourceUrl: "https://jkface.net/events/315"
+            }
+          ]
+        })}
+        onRemovePurchasedEntry={() => undefined}
+        onRemoveCandidateEntry={onRemoveCandidateEntry}
+      />
+    );
+
+    expect(screen.getByText("我的預選活動")).toBeInTheDocument();
+    expect(screen.getByText("音無鈴 預選方案")).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "刪除預選 ACT 激情水鑽感謝祭" }));
+
+    expect(onRemoveCandidateEntry).toHaveBeenCalledWith("candidate-act-20260703-1430");
   });
 });

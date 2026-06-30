@@ -7,12 +7,14 @@ import { EventCatalogTab } from "./features/event-catalog/EventCatalogTab";
 import { MyScheduleTab } from "./features/my-schedule/MyScheduleTab";
 import { loadOfficialEventData, safeParseAppData } from "./lib/loadData";
 import {
+  addCandidateEntry,
   addPurchasedEntry,
   loadUserSchedule,
+  removeCandidateEntry,
   removePurchasedEntry,
   saveUserSchedule
 } from "./lib/userScheduleStorage";
-import type { PurchasedScheduleEntry } from "./types/userSchedule";
+import type { UserScheduleEntry } from "./types/userSchedule";
 
 export default function App() {
   const result = safeParseAppData();
@@ -34,9 +36,17 @@ export default function App() {
 
   const { data } = result;
 
-  const handleAddPurchasedEntry = (entry: PurchasedScheduleEntry) => {
+  const handleAddPurchasedEntry = (entry: UserScheduleEntry) => {
     setSchedule((current) => {
       const next = addPurchasedEntry(current, entry);
+      saveUserSchedule(next);
+      return next;
+    });
+  };
+
+  const handleAddCandidateEntry = (entry: UserScheduleEntry) => {
+    setSchedule((current) => {
+      const next = addCandidateEntry(current, entry);
       saveUserSchedule(next);
       return next;
     });
@@ -45,6 +55,14 @@ export default function App() {
   const handleRemovePurchasedEntry = (entryId: string) => {
     setSchedule((current) => {
       const next = removePurchasedEntry(current, entryId);
+      saveUserSchedule(next);
+      return next;
+    });
+  };
+
+  const handleRemoveCandidateEntry = (entryId: string) => {
+    setSchedule((current) => {
+      const next = removeCandidateEntry(current, entryId);
       saveUserSchedule(next);
       return next;
     });
@@ -60,6 +78,7 @@ export default function App() {
           officialData={officialData}
           schedule={schedule}
           onRemovePurchasedEntry={handleRemovePurchasedEntry}
+          onRemoveCandidateEntry={handleRemoveCandidateEntry}
         />
       )
     },
@@ -85,6 +104,8 @@ export default function App() {
           schedule={schedule}
           onAddPurchasedEntry={handleAddPurchasedEntry}
           onRemovePurchasedEntry={handleRemovePurchasedEntry}
+          onAddCandidateEntry={handleAddCandidateEntry}
+          onRemoveCandidateEntry={handleRemoveCandidateEntry}
         />
       )
     }

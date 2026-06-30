@@ -14,6 +14,7 @@ function buildSchedule(
     version: 1,
     updatedAt: "2026-06-30T12:00:00.000Z",
     purchasedEntries: [],
+    candidateEntries: [],
     ...overrides
   };
 }
@@ -316,6 +317,122 @@ describe("ConflictAnalysisTab", () => {
       "href",
       "https://jkface.net/events/315"
     );
+  });
+
+  test("shows candidate entries and their overlap labels in the calendar", async () => {
+    const user = userEvent.setup();
+    const data = parseAppData({
+      people: [
+        {
+          id: "special-hostess",
+          name: "招待女優",
+          group: null,
+          bio: null,
+          tags: [],
+          notes: null,
+          image: null
+        }
+      ],
+      events: [
+        {
+          id: "gold-benefit",
+          title: "女優親密接觸",
+          date: "2026/07/03",
+          start: "13:50",
+          end: "14:20",
+          type: "card-benefit",
+          peopleIds: ["special-hostess"],
+          description: null,
+          location: null,
+          source: "test",
+          status: "planned",
+          notes: null
+        }
+      ],
+      myPlan: {
+        ownedCards: { gold: 1, silver: 1 },
+        purchasedEventIds: [],
+        candidateEventIds: [],
+        pendingCardBenefitPreferences: [],
+        preferredPeopleIds: [],
+        preferredTimeSlotNotes: []
+      },
+      rules: {
+        overlapRequiresSameDate: true,
+        overlapRequiresTimeWindowIntersection: true,
+        goldCardConflictEventIds: ["gold-benefit"],
+        silverCardConflictEventIds: []
+      }
+    });
+
+    render(
+      <ConflictAnalysisTab
+        data={data}
+        schedule={buildSchedule({
+          purchasedEntries: [
+            {
+              id: "act-kanon",
+              sourceType: "official",
+              officialEventId: "jkface-event-315",
+              officialEventTitle: "ACT 激情水鑽感謝祭",
+              selectionLabel: "雛乃花音 第四場",
+              date: "2026/07/03",
+              start: "13:30",
+              end: "14:10",
+              vendorName: "ACT",
+              peopleNames: ["雛乃花音"],
+              notes: null,
+              sourceUrl: "https://jkface.net/events/315"
+            }
+          ],
+          candidateEntries: [
+            {
+              id: "candidate-kohana",
+              sourceType: "official",
+              officialEventId: "jkface-event-326",
+              officialEventTitle: "夢想企画感謝祭",
+              selectionLabel: "小花暖 預選白金互動",
+              date: "2026/07/03",
+              start: "13:40",
+              end: "14:00",
+              vendorName: "夢想企画",
+              peopleNames: ["小花暖"],
+              notes: "想賭看看能不能趕場",
+              sourceUrl: "https://jkface.net/events/326"
+            }
+          ]
+        })}
+        officialData={buildOfficialData({
+          events: [
+            {
+              id: "jkface-event-326",
+              title: "夢想企画感謝祭",
+              bannerImageUrl: null,
+              detailImageUrls: [],
+              sourceUrl: "https://jkface.net/events/326",
+              vendorName: "夢想企画",
+              actressNames: ["小花暖"],
+              priceTags: [],
+              fullContent: "預選活動官方全文"
+            }
+          ]
+        })}
+      />
+    );
+
+    expect(screen.getByText("預選 1 場")).toBeInTheDocument();
+    expect(screen.getByText("小花暖 預選白金互動")).toBeInTheDocument();
+    expect(screen.getByText("撞到已購")).toBeInTheDocument();
+    expect(screen.getAllByText("撞到金卡").length).toBeGreaterThan(0);
+
+    await user.click(screen.getByRole("button", { name: "查看 夢想企画感謝祭 詳情" }));
+
+    const detailPanel = screen.getByLabelText("活動詳情面板");
+
+    expect(within(detailPanel).getByText("預選活動")).toBeInTheDocument();
+    expect(within(detailPanel).getByText("想賭看看能不能趕場")).toBeInTheDocument();
+    expect(within(detailPanel).getByText("撞到已購")).toBeInTheDocument();
+    expect(within(detailPanel).getByText("撞到金卡")).toBeInTheDocument();
   });
 
   test("shows benefit block details after selecting a benefit block", async () => {

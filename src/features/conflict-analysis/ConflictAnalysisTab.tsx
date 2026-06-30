@@ -32,11 +32,14 @@ export function ConflictAnalysisTab({
         </p>
         <h2 className="mt-2 text-2xl font-semibold">三日行程月曆</h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-emerald-50/90">
-          只顯示 7/3、7/4、7/5，讓你直接看已購活動落在哪些時段，並檢查是否撞到金卡或白銀卡權益。
+          只顯示 7/3、7/4、7/5，讓你直接看已購與預選活動落在哪些時段，並檢查是否撞到金卡或白銀卡權益。
         </p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
           <span className="rounded-full bg-white/16 px-3 py-1.5">
             已購 {calendar.purchasedCount} 場
+          </span>
+          <span className="rounded-full bg-white/16 px-3 py-1.5">
+            預選 {calendar.candidateCount} 場
           </span>
           <span className="rounded-full bg-white/16 px-3 py-1.5">
             權益 {calendar.benefitCount} 場
@@ -59,7 +62,7 @@ export function ConflictAnalysisTab({
           />
         </div>
         <p className="mt-3 text-sm text-slate-600">
-          月曆中的深色卡片是你已購的活動，淺色卡片是主辦方固定權益時段。
+          月曆中的深色卡片是已購活動，紫紅色卡片是預選活動，淺色卡片是主辦方固定權益時段。
         </p>
       </section>
 
@@ -80,8 +83,13 @@ export function ConflictAnalysisTab({
           <h4 className="mt-2 text-lg font-semibold text-slate-950">{selectedBlock.title}</h4>
           <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
             <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">
-              {selectedBlock.subtitle}
+              {selectedBlock.kind === "candidate" ? "預選活動" : selectedBlock.subtitle}
             </span>
+            {selectedBlock.kind !== "candidate" ? null : (
+              <span className="rounded-full bg-fuchsia-100 px-3 py-1 text-fuchsia-700">
+                {selectedBlock.subtitle}
+              </span>
+            )}
             {selectedBlock.vendorName ? (
               <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">
                 {selectedBlock.vendorName}
@@ -97,6 +105,13 @@ export function ConflictAnalysisTab({
             ) : null}
             {selectedBlock.location ? <p>{selectedBlock.location}</p> : null}
             {selectedBlock.notes ? <p>{selectedBlock.notes}</p> : null}
+            {selectedBlock.conflictLabels.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {selectedBlock.conflictLabels.map((label) => (
+                  <ConflictBadge key={`${selectedBlock.id}-${label}`} label={label} tone="danger" />
+                ))}
+              </div>
+            ) : null}
             {selectedBlock.description ? (
               <p className="whitespace-pre-wrap text-slate-600">{selectedBlock.description}</p>
             ) : null}

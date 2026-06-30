@@ -12,6 +12,7 @@ function buildSchedule(
     version: 1,
     updatedAt: "2026-06-30T12:00:00.000Z",
     purchasedEntries: [],
+    candidateEntries: [],
     ...overrides
   };
 }
@@ -245,5 +246,98 @@ describe("buildThreeDayCalendar", () => {
 
     expect(purchasedBlock?.conflictLabels).toContain("撞到金卡");
     expect(calendar.conflictCount).toBe(1);
+  });
+
+  test("renders candidate entries and marks overlaps with purchased and benefit windows", () => {
+    const data = parseAppData({
+      people: [
+        {
+          id: "hostess",
+          name: "招待女優",
+          group: null,
+          bio: null,
+          tags: [],
+          notes: null,
+          image: null
+        }
+      ],
+      events: [
+        {
+          id: "gold-benefit",
+          title: "女優親密接觸",
+          date: "2026/07/03",
+          start: "13:50",
+          end: "14:20",
+          type: "card-benefit",
+          peopleIds: ["hostess"],
+          description: null,
+          location: null,
+          source: "test",
+          status: "planned",
+          notes: null
+        }
+      ],
+      myPlan: {
+        ownedCards: { gold: 1, silver: 1 },
+        purchasedEventIds: [],
+        candidateEventIds: [],
+        pendingCardBenefitPreferences: [],
+        preferredPeopleIds: [],
+        preferredTimeSlotNotes: []
+      },
+      rules: {
+        overlapRequiresSameDate: true,
+        overlapRequiresTimeWindowIntersection: true,
+        goldCardConflictEventIds: ["gold-benefit"],
+        silverCardConflictEventIds: []
+      }
+    });
+
+    const calendar = buildThreeDayCalendar(
+      data,
+      buildSchedule({
+        purchasedEntries: [
+          {
+            id: "act-kanon",
+            sourceType: "official",
+            officialEventId: "event-3",
+            officialEventTitle: "ACT 激情水鑽感謝祭",
+            selectionLabel: "雛乃花音 第四場",
+            date: "2026/07/03",
+            start: "13:30",
+            end: "14:10",
+            vendorName: "ACT",
+            peopleNames: ["雛乃花音"],
+            notes: null,
+            sourceUrl: "https://example.com/3"
+          }
+        ],
+        candidateEntries: [
+          {
+            id: "candidate-kohana",
+            sourceType: "official",
+            officialEventId: "event-5",
+            officialEventTitle: "7/5 活動",
+            selectionLabel: "小花暖 預選方案",
+            date: "2026/07/03",
+            start: "13:40",
+            end: "14:00",
+            vendorName: "ACT",
+            peopleNames: ["小花暖"],
+            notes: "想看能不能趕上",
+            sourceUrl: "https://example.com/5"
+          }
+        ]
+      }),
+      buildOfficialData()
+    );
+
+    const candidateBlock = calendar.days[0].blocks.find((block) => block.kind === "candidate");
+
+    expect(candidateBlock?.title).toBe("7/5 活動");
+    expect(candidateBlock?.conflictLabels).toContain("撞到已購");
+    expect(candidateBlock?.conflictLabels).toContain("撞到金卡");
+    expect(calendar.candidateCount).toBe(1);
+    expect(calendar.conflictCount).toBe(2);
   });
 });

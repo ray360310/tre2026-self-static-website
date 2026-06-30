@@ -1,14 +1,16 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import {
+  addCandidateEntry,
   createEmptyUserSchedule,
   loadUserSchedule,
+  removeCandidateEntry,
   saveUserSchedule,
   togglePurchasedEntry
 } from "../userScheduleStorage";
-import type { PurchasedScheduleEntry } from "../../types/userSchedule";
+import type { UserScheduleEntry } from "../../types/userSchedule";
 
-function createEntry(overrides: Partial<PurchasedScheduleEntry> = {}): PurchasedScheduleEntry {
+function createEntry(overrides: Partial<UserScheduleEntry> = {}): UserScheduleEntry {
   return {
     id: "entry-act-hinano-20260703-1330",
     sourceType: "official",
@@ -51,6 +53,7 @@ describe("userScheduleStorage", () => {
     const schedule = {
       version: 1 as const,
       purchasedEntries: [createEntry()],
+      candidateEntries: [createEntry({ id: "candidate-1" })],
       updatedAt: "2026-06-30T12:00:00.000Z"
     };
 
@@ -74,5 +77,25 @@ describe("userScheduleStorage", () => {
     const removed = togglePurchasedEntry(added, entry);
 
     expect(removed.purchasedEntries).toEqual([]);
+  });
+
+  test("creates an empty schedule with empty candidate entries", () => {
+    expect(createEmptyUserSchedule()).toEqual({
+      version: 1,
+      purchasedEntries: [],
+      candidateEntries: [],
+      updatedAt: null
+    });
+  });
+
+  test("adds and removes candidate entries by id", () => {
+    const entry = createEntry({ id: "candidate-315" });
+    const added = addCandidateEntry(createEmptyUserSchedule(), entry);
+
+    expect(added.candidateEntries).toEqual([entry]);
+
+    const removed = removeCandidateEntry(added, entry.id);
+
+    expect(removed.candidateEntries).toEqual([]);
   });
 });

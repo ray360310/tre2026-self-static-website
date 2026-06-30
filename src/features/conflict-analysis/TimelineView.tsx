@@ -60,33 +60,35 @@ export function TimelineView({ calendar, selectedBlockId, onSelectBlock }: Timel
 
                 return (
                   <button
-                  key={block.id}
-                  type="button"
-                  aria-label={`查看 ${block.title} 詳情`}
-                  onClick={() => onSelectBlock(block.id)}
-                  className={`absolute left-14 right-2 overflow-hidden rounded-2xl border px-3 py-2 text-left shadow-sm transition ${
-                    block.kind === "purchased"
-                      ? block.conflictLabels.length > 0
-                        ? "border-rose-400 bg-rose-50 text-rose-950"
-                        : "border-slate-900 bg-slate-900 text-white"
-                      : block.cardType === "gold"
-                        ? "border-amber-300 bg-amber-50 text-amber-950"
-                        : "border-cyan-300 bg-cyan-50 text-cyan-950"
-                  } ${isSelected ? "ring-2 ring-offset-1 ring-slate-900" : ""}`}
-                  style={blockStyle(block.startMinutes, block.endMinutes, calendar.minHour)}
-                >
-                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] opacity-80">
-                    {block.subtitle}
-                  </p>
-                  <h4 className="mt-1 text-sm font-semibold leading-5">{block.title}</h4>
-                  <p className="mt-1 text-xs font-medium">
-                    {block.start}-{block.end}
-                  </p>
-                  {block.conflictLabels.map((label) => (
-                    <p key={`${block.id}-${label}`} className="mt-1 text-xs font-semibold">
-                      {label}
+                    key={block.id}
+                    type="button"
+                    aria-label={`查看 ${block.title} 詳情`}
+                    onClick={() => onSelectBlock(block.id)}
+                    className={`absolute left-14 right-2 overflow-hidden rounded-2xl border px-3 py-2 text-left shadow-sm transition ${
+                      block.kind === "purchased"
+                        ? block.conflictLabels.length > 0
+                          ? "border-rose-400 bg-rose-50 text-rose-950"
+                          : "border-slate-900 bg-slate-900 text-white"
+                        : block.kind === "candidate"
+                          ? "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-950"
+                          : block.cardType === "gold"
+                            ? "border-amber-300 bg-amber-50 text-amber-950"
+                            : "border-cyan-300 bg-cyan-50 text-cyan-950"
+                    } ${isSelected ? "ring-2 ring-offset-1 ring-slate-900" : ""}`}
+                    style={blockStyle(block.startMinutes, block.endMinutes, calendar.minHour)}
+                  >
+                    <p className="text-[11px] font-bold uppercase tracking-[0.12em] opacity-80">
+                      {block.subtitle}
                     </p>
-                  ))}
+                    <h4 className="mt-1 text-sm font-semibold leading-5">{block.title}</h4>
+                    <p className="mt-1 text-xs font-medium">
+                      {block.start}-{block.end}
+                    </p>
+                    {block.conflictLabels.map((label) => (
+                      <p key={`${block.id}-${label}`} className="mt-1 text-xs font-semibold">
+                        {label}
+                      </p>
+                    ))}
                   </button>
                 );
               })}

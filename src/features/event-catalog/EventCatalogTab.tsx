@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 
 import type { OfficialEventData } from "../../types/officialData";
-import type { PurchasedScheduleEntry, UserScheduleRecord } from "../../types/userSchedule";
+import type { UserScheduleEntry, UserScheduleRecord } from "../../types/userSchedule";
 import { CatalogFilters } from "./CatalogFilters";
 
 interface EventCatalogTabProps {
   officialData: OfficialEventData;
   schedule: UserScheduleRecord;
-  onAddPurchasedEntry: (entry: PurchasedScheduleEntry) => void;
+  onAddPurchasedEntry: (entry: UserScheduleEntry) => void;
   onRemovePurchasedEntry: (entryId: string) => void;
+  onAddCandidateEntry: (entry: UserScheduleEntry) => void;
+  onRemoveCandidateEntry: (entryId: string) => void;
 }
 
 interface PurchasedEntryDraft {
@@ -83,7 +85,9 @@ export function EventCatalogTab({
   officialData,
   schedule,
   onAddPurchasedEntry,
-  onRemovePurchasedEntry
+  onRemovePurchasedEntry,
+  onAddCandidateEntry,
+  onRemoveCandidateEntry
 }: EventCatalogTabProps) {
   const [selectedVendor, setSelectedVendor] = useState("");
   const [selectedActress, setSelectedActress] = useState("");
@@ -191,7 +195,7 @@ export function EventCatalogTab({
     setSelectedPriceTag("");
   };
 
-  const handleAddEntry = (event: OfficialEventData["events"][number]) => {
+  const buildEntry = (event: OfficialEventData["events"][number]): UserScheduleEntry | null => {
     const draft = getDraft(event.id, event.actressNames);
     const resolvedPlanName = getResolvedPlanName(draft);
     const nextErrors: DraftFieldError = {};
@@ -221,7 +225,7 @@ export function EventCatalogTab({
         ...current,
         [event.id]: nextErrors
       }));
-      return;
+      return null;
     }
 
     const normalizedPlanName = resolvedPlanName;
@@ -239,7 +243,7 @@ export function EventCatalogTab({
       .replace(/^-+|-+$/g, "")
       .toLowerCase();
 
-    onAddPurchasedEntry({
+    return {
       id: entryId,
       sourceType: "official",
       officialEventId: event.id,
@@ -252,7 +256,28 @@ export function EventCatalogTab({
       peopleNames: draft.personName ? [draft.personName] : [],
       notes: draft.notes.trim() || null,
       sourceUrl: event.sourceUrl
-    });
+    };
+  };
+
+  const handleAddPurchasedEntryClick = (event: OfficialEventData["events"][number]) => {
+    const entry = buildEntry(event);
+
+    if (!entry) {
+      return;
+    }
+
+    onAddPurchasedEntry(entry);
+    clearDraft(event.id);
+  };
+
+  const handleAddCandidateEntryClick = (event: OfficialEventData["events"][number]) => {
+    const entry = buildEntry(event);
+
+    if (!entry) {
+      return;
+    }
+
+    onAddCandidateEntry(entry);
     clearDraft(event.id);
   };
 
@@ -302,6 +327,9 @@ export function EventCatalogTab({
         {visibleEvents.map((event) => {
           const isExpanded = expandedEventId === event.id;
           const purchasedEntries = schedule.purchasedEntries.filter(
+            (entry) => entry.officialEventId === event.id
+          );
+          const candidateEntries = schedule.candidateEntries.filter(
             (entry) => entry.officialEventId === event.id
           );
           const draft = getDraft(event.id, event.actressNames);
@@ -368,7 +396,8 @@ export function EventCatalogTab({
                 <div className="flex items-center justify-between gap-3 text-xs font-medium text-slate-500">
                   <span>
                     {event.actressNames.length} 位人物
-                    {purchasedEntries.length > 0 ? ` · 已加入 ${purchasedEntries.length} 場` : ""}
+                    {purchasedEntries.length > 0 ? ` · 已購 ${purchasedEntries.length} 場` : ""}
+                    {candidateEntries.length > 0 ? ` · 預選 ${candidateEntries.length} 場` : ""}
                   </span>
                   <a
                     href={event.sourceUrl}
@@ -404,6 +433,32 @@ export function EventCatalogTab({
                                 className="rounded-full bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white"
                               >
                                 移出已購
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                      {candidateEntries.length > 0 ? (
+                        <div className="mt-3 space-y-2">
+                          {candidateEntries.map((entry) => (
+                            <div
+                              key={entry.id}
+                              className="flex items-center justify-between gap-3 rounded-xl bg-white px-3 py-3 ring-1 ring-fuchsia-100"
+                            >
+                              <div>
+                                <p className="text-sm font-semibold text-slate-900">
+                                  {entry.selectionLabel}
+                                </p>
+                                <p className="text-xs text-slate-600">
+                                  {entry.date} {entry.start}-{entry.end}
+                                </p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => onRemoveCandidateEntry(entry.id)}
+                                className="rounded-full bg-fuchsia-700 px-3 py-1.5 text-xs font-semibold text-white"
+                              >
+                                移出預選
                               </button>
                             </div>
                           ))}
@@ -582,7 +637,14 @@ export function EventCatalogTab({
                         <div className="flex justify-end">
                           <button
                             type="button"
-                            onClick={() => handleAddEntry(event)}
+                            onClick={() => handleAddCandidateEntryClick(event)}
+                            className="rounded-full bg-fuchsia-100 px-4 py-2 text-sm font-semibold text-fuchsia-800 ring-1 ring-fuchsia-200"
+                          >
+                            加入預選
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleAddPurchasedEntryClick(event)}
                             className="rounded-full bg-cyan-700 px-4 py-2 text-sm font-semibold text-white"
                           >
                             加入已購

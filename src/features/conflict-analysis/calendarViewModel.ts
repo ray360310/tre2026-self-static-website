@@ -11,7 +11,7 @@ const CALENDAR_DATES = [
 
 export interface CalendarBlock {
   id: string;
-  kind: "purchased" | "benefit";
+  kind: "purchased" | "candidate" | "benefit";
   title: string;
   subtitle: string;
   date: string;
@@ -41,6 +41,7 @@ export interface ThreeDayCalendarModel {
   minHour: number;
   maxHour: number;
   purchasedCount: number;
+  candidateCount: number;
   benefitCount: number;
   conflictCount: number;
 }
@@ -131,6 +132,37 @@ function resolvePurchasedBlocks(
   });
 }
 
+function resolveCandidateBlocks(
+  schedule: UserScheduleRecord,
+  officialData: OfficialEventData
+): CalendarBlock[] {
+  return schedule.candidateEntries.map((entry) => {
+    const officialEvent = officialData.events.find(
+      (event) => event.id === entry.officialEventId
+    );
+
+    return {
+      id: entry.id,
+      kind: "candidate",
+      title: entry.officialEventTitle,
+      subtitle: entry.selectionLabel,
+      date: entry.date,
+      start: entry.start,
+      end: entry.end,
+      startMinutes: parseTimeToMinutes(entry.start),
+      endMinutes: parseTimeToMinutes(entry.end),
+      cardType: null,
+      conflictLabels: [],
+      vendorName: entry.vendorName,
+      peopleNames: entry.peopleNames,
+      notes: entry.notes,
+      sourceUrl: entry.sourceUrl,
+      description: officialEvent?.fullContent ?? null,
+      location: null
+    };
+  });
+}
+
 function overlaps(left: CalendarBlock, right: CalendarBlock): boolean {
   return eventsOverlap(
     {
@@ -166,6 +198,9 @@ export function buildThreeDayCalendar(
   const purchasedBlocks = resolvePurchasedBlocks(schedule, officialData).filter((block) =>
     CALENDAR_DATES.some((day) => day.date === block.date)
   );
+  const candidateBlocks = resolveCandidateBlocks(schedule, officialData).filter((block) =>
+    CALENDAR_DATES.some((day) => day.date === block.date)
+  );
   const benefitBlocks = resolveBenefitBlocks(data).filter((block) =>
     CALENDAR_DATES.some((day) => day.date === block.date)
   );
@@ -183,7 +218,27 @@ export function buildThreeDayCalendar(
     }
   }
 
-  const allBlocks = [...purchasedBlocks, ...benefitBlocks];
+  for (const candidateBlock of candidateBlocks) {
+    const matchingPurchased = purchasedBlocks.filter((purchasedBlock) =>
+      overlaps(candidateBlock, purchasedBlock)
+    );
+    const matchingBenefits = benefitBlocks.filter((benefitBlock) =>
+      overlaps(candidateBlock, benefitBlock)
+    );
+
+    candidateBlock.conflictLabels = [
+      ...(matchingPurchased.length > 0 ? ["撞到已購"] : []),
+      ...matchingBenefits.map((benefitBlock) =>
+        benefitBlock.cardType === "gold" ? "撞到金卡" : "撞到白銀卡"
+      )
+    ];
+
+    if (candidateBlock.conflictLabels.length > 0) {
+      conflictCount += 1;
+    }
+  }
+
+  const allBlocks = [...purchasedBlocks, ...candidateBlocks, ...benefitBlocks];
   const minStart = allBlocks.length > 0 ? Math.min(...allBlocks.map((block) => block.startMinutes)) : 10 * 60;
   const maxEnd = allBlocks.length > 0 ? Math.max(...allBlocks.map((block) => block.endMinutes)) : 22 * 60;
   const minHour = Math.max(0, Math.floor(minStart / 60));
@@ -192,13 +247,14 @@ export function buildThreeDayCalendar(
   return {
     days: CALENDAR_DATES.map((day) => ({
       ...day,
-      blocks: [...purchasedBlocks, ...benefitBlocks]
+      blocks: [...purchasedBlocks, ...candidateBlocks, ...benefitBlocks]
         .filter((block) => block.date === day.date)
         .sort(sortBlocks)
     })),
     minHour,
     maxHour,
     purchasedCount: purchasedBlocks.length,
+    candidateCount: candidateBlocks.length,
     benefitCount: benefitBlocks.length,
     conflictCount
   };
