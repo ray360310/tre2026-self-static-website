@@ -29,6 +29,28 @@ function buildOfficialData(): OfficialEventData {
       actressNames: ["小花暖"],
       priceTags: ["FACE券"],
       fullContent: "夢想企画完整內容"
+    },
+    {
+      id: "jkface-event-321",
+      title: "TRE AV CULT粉絲見面會",
+      bannerImageUrl: "https://example.com/avcult-banner.jpg",
+      detailImageUrls: [],
+      sourceUrl: "https://jkface.net/events/321",
+      vendorName: "AVCULT",
+      actressNames: ["桃園怜奈", "藤森里穗"],
+      priceTags: [],
+      fullContent: "AV CULT 活動完整內容"
+    },
+    {
+      id: "jkface-event-341",
+      title: "UR AV  ★情慾天國 PARADISE OF DESIRE ★",
+      bannerImageUrl: "https://example.com/urav-banner.jpg",
+      detailImageUrls: [],
+      sourceUrl: "https://jkface.net/events/341",
+      vendorName: "UR AV",
+      actressNames: ["倉本堇", "小梅惠奈"],
+      priceTags: ["鑽石"],
+      fullContent: "UR AV 活動完整內容"
     }
   ];
   const people = [
@@ -49,6 +71,30 @@ function buildOfficialData(): OfficialEventData {
       name: "小花暖",
       image: null,
       sourceUrl: "https://jkface.net/events/314"
+    },
+    {
+      id: "jkface-person-桃園怜奈",
+      name: "桃園怜奈",
+      image: null,
+      sourceUrl: "https://jkface.net/events/321"
+    },
+    {
+      id: "jkface-person-藤森里穗",
+      name: "藤森里穗",
+      image: null,
+      sourceUrl: "https://jkface.net/events/321"
+    },
+    {
+      id: "jkface-person-倉本堇",
+      name: "倉本堇",
+      image: null,
+      sourceUrl: "https://jkface.net/events/341"
+    },
+    {
+      id: "jkface-person-小梅惠奈",
+      name: "小梅惠奈",
+      image: null,
+      sourceUrl: "https://jkface.net/events/341"
     }
   ];
 
@@ -284,5 +330,91 @@ describe("EventCatalogTab", () => {
     expect(screen.getByText("請選擇活動日期")).toBeInTheDocument();
     expect(screen.getByText("請選擇開始時間")).toBeInTheDocument();
     expect(screen.getByText("請選擇結束時間")).toBeInTheDocument();
+  });
+
+  test("shows structured summary details for enhanced plans", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <EventCatalogTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule()}
+        onAddPurchasedEntry={() => undefined}
+        onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
+      />
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[3]);
+    await user.selectOptions(screen.getByLabelText("活動人物"), "倉本堇");
+    await user.selectOptions(screen.getByLabelText("方案名稱"), "A｜25,000紅鑽｜白羽聖域");
+
+    expect(screen.getByText("拍立得合照1張、手機合照2次、寫真攝影15秒、簽名1項物品")).toBeInTheDocument();
+    expect(screen.getByText("25,000紅鑽")).toBeInTheDocument();
+    expect(screen.getByText("請選擇場次")).toBeInTheDocument();
+  });
+
+  test("requires session selection for enhanced events with multiple sessions", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <EventCatalogTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule()}
+        onAddPurchasedEntry={() => undefined}
+        onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
+      />
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[2]);
+    await user.selectOptions(screen.getByLabelText("活動人物"), "桃園怜奈");
+    await user.selectOptions(screen.getByLabelText("方案名稱"), "MEET｜3,000 TWD｜粉絲見面會");
+
+    expect(screen.getByLabelText("場次")).toBeInTheDocument();
+    expect(screen.getByLabelText("活動日期")).toHaveValue("");
+
+    await user.selectOptions(screen.getByLabelText("場次"), "7/3 13:30-14:30｜第3場");
+
+    expect(screen.getByLabelText("活動日期")).toHaveValue("2026-07-03");
+    expect(screen.getByLabelText("開始時間")).toHaveValue("13:30");
+    expect(screen.getByLabelText("結束時間")).toHaveValue("14:30");
+  });
+
+  test("saves enhanced event selections with chosen session time and outfit summary", async () => {
+    const user = userEvent.setup();
+    const addPurchasedEntry = vi.fn();
+
+    render(
+      <EventCatalogTab
+        officialData={buildOfficialData()}
+        schedule={buildSchedule()}
+        onAddPurchasedEntry={addPurchasedEntry}
+        onRemovePurchasedEntry={() => undefined}
+        onAddCandidateEntry={() => undefined}
+        onRemoveCandidateEntry={() => undefined}
+      />
+    );
+
+    await user.click(screen.getAllByRole("button", { name: "展開內容" })[3]);
+    await user.selectOptions(screen.getByLabelText("活動人物"), "倉本堇");
+    await user.selectOptions(screen.getByLabelText("方案名稱"), "A｜25,000紅鑽｜白羽聖域");
+    await user.selectOptions(screen.getByLabelText("場次"), "7/3 11:00-11:50｜第1場");
+
+    expect(screen.getByText("服裝：性感內衣A")).toBeInTheDocument();
+    expect(screen.getByText("場次備註：倉本堇時刻表")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "加入已購" }));
+
+    expect(addPurchasedEntry).toHaveBeenCalledWith(
+      expect.objectContaining({
+        officialEventId: "jkface-event-341",
+        selectionLabel: "倉本堇 白羽聖域",
+        date: "2026/07/03",
+        start: "11:00",
+        end: "11:50"
+      })
+    );
   });
 });

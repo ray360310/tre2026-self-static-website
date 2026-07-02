@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { getEnhancementPlanOptions, getEnhancementProfiles } from "../../lib/eventEnhancements";
 import type { OfficialEventData } from "../../types/officialData";
 import type { UserScheduleEntry, UserScheduleRecord } from "../../types/userSchedule";
 import { CatalogFilters } from "./CatalogFilters";
@@ -16,6 +17,7 @@ interface EventCatalogTabProps {
 interface PurchasedEntryDraft {
   personName: string;
   planOption: string;
+  enhancementSessionId: string;
   customPlanName: string;
   date: string;
   start: string;
@@ -81,6 +83,18 @@ function getResolvedPlanName(draft: PurchasedEntryDraft): string {
   return draft.planOption.trim();
 }
 
+function getPlanOptionLabel(planCode: string, planName: string, priceLabel: string | null): string {
+  return `${planCode}｜${priceLabel ?? "未定價"}｜${planName}`;
+}
+
+function getSessionOptionLabel(date: string, start: string, end: string, label: string): string {
+  const [, month = "", day = ""] = date.split("/");
+  const normalizedMonth = String(Number(month));
+  const normalizedDay = String(Number(day));
+
+  return `${normalizedMonth}/${normalizedDay} ${start}-${end}｜${label}`;
+}
+
 export function EventCatalogTab({
   officialData,
   schedule,
@@ -103,6 +117,7 @@ export function EventCatalogTab({
     draftsByEventId[eventId] ?? {
       personName: actressNames[0] ?? "",
       planOption: "",
+      enhancementSessionId: "",
       customPlanName: "",
       date: "",
       start: "",
@@ -197,7 +212,19 @@ export function EventCatalogTab({
 
   const buildEntry = (event: OfficialEventData["events"][number]): UserScheduleEntry | null => {
     const draft = getDraft(event.id, event.actressNames);
-    const resolvedPlanName = getResolvedPlanName(draft);
+    const enhancementPlans = getEnhancementPlanOptions(event.id, draft.personName);
+    const selectedEnhancementPlan = enhancementPlans.find(
+      (plan) => getPlanOptionLabel(plan.planCode, plan.planName, plan.priceLabel) === draft.planOption
+    );
+    const selectedEnhancementSession =
+      selectedEnhancementPlan?.sessions.length === 1
+        ? selectedEnhancementPlan.sessions[0]
+        : selectedEnhancementPlan?.sessions.find(
+            (session) =>
+              getSessionOptionLabel(session.date, session.start, session.end, session.label) ===
+              draft.enhancementSessionId
+          ) ?? null;
+    const resolvedPlanName = selectedEnhancementPlan?.planName ?? getResolvedPlanName(draft);
     const nextErrors: DraftFieldError = {};
 
     if (!draft.personName) {
@@ -334,7 +361,31 @@ export function EventCatalogTab({
           );
           const draft = getDraft(event.id, event.actressNames);
           const errors = errorsByEventId[event.id] ?? {};
-          const planOptions = extractPlanOptions(event.fullContent);
+          const enhancementProfiles = getEnhancementProfiles(event.id);
+          const profileNames =
+            enhancementProfiles.length > 0
+              ? enhancementProfiles.map((profile) => profile.personName)
+              : event.actressNames;
+          const enhancementPlans = getEnhancementPlanOptions(event.id, draft.personName);
+          const planOptions =
+            enhancementPlans.length > 0
+              ? enhancementPlans.map((plan) =>
+                  getPlanOptionLabel(plan.planCode, plan.planName, plan.priceLabel)
+                )
+              : extractPlanOptions(event.fullContent);
+          const selectedEnhancementPlan = enhancementPlans.find(
+            (plan) => getPlanOptionLabel(plan.planCode, plan.planName, plan.priceLabel) === draft.planOption
+          );
+          const enhancementSessions = selectedEnhancementPlan?.sessions ?? [];
+          const selectedEnhancementSession =
+            enhancementSessions.length === 1
+              ? enhancementSessions[0]
+              : enhancementSessions.find(
+                  (session) =>
+                    getSessionOptionLabel(session.date, session.start, session.end, session.label) ===
+                    draft.enhancementSessionId
+                ) ?? null;
+          const hasStructuredSessions = enhancementSessions.length > 0;
 
           return (
             <article
@@ -472,18 +523,27 @@ export function EventCatalogTab({
                           <select
                             aria-label="活動人物"
                             value={draft.personName}
-                            onChange={(entryEvent) =>
-                              setDraftField(
-                                event.id,
-                                event.actressNames,
-                                "personName",
-                                entryEvent.target.value
-                              )
-                            }
+                            onChange={(entryEvent) => {
+                              const nextPersonName = entryEvent.target.value;
+
+                              setDraftsByEventId((current) => ({
+                                ...current,
+                                [event.id]: {
+                                  ...getDraft(event.id, event.actressNames),
+                                  personName: nextPersonName,
+                                  planOption: "",
+                                  enhancementSessionId: "",
+                                  customPlanName: "",
+                                  date: "",
+                                  start: "",
+                                  end: ""
+                                }
+                              }));
+                            }}
                             className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
                           >
                             <option value="">請選擇人物</option>
-                            {event.actressNames.map((name) => (
+                            {profileNames.map((name) => (
                               <option key={`${event.id}-${name}`} value={name}>
                                 {name}
                               </option>
@@ -502,14 +562,31 @@ export function EventCatalogTab({
                           <select
                             aria-label="方案名稱"
                             value={draft.planOption}
-                            onChange={(entryEvent) =>
-                              setDraftField(
-                                event.id,
-                                event.actressNames,
-                                "planOption",
-                                entryEvent.target.value
-                              )
-                            }
+                            onChange={(entryEvent) => {
+                              const nextPlanOption = entryEvent.target.value;
+                              const nextEnhancementPlan = enhancementPlans.find(
+                                (plan) =>
+                                  getPlanOptionLabel(plan.planCode, plan.planName, plan.priceLabel) ===
+                                  nextPlanOption
+                              );
+                              const singleSession =
+                                nextEnhancementPlan?.sessions.length === 1
+                                  ? nextEnhancementPlan.sessions[0]
+                                  : null;
+
+                              setDraftsByEventId((current) => ({
+                                ...current,
+                                [event.id]: {
+                                  ...getDraft(event.id, event.actressNames),
+                                  planOption: nextPlanOption,
+                                  enhancementSessionId: "",
+                                  customPlanName: "",
+                                  date: singleSession?.date ?? "",
+                                  start: singleSession?.start ?? "",
+                                  end: singleSession?.end ?? ""
+                                }
+                              }));
+                            }}
                             className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
                           >
                             <option value="">請選擇方案</option>
@@ -518,9 +595,9 @@ export function EventCatalogTab({
                                 {option}
                               </option>
                             ))}
-                            <option value="其他">其他</option>
+                            {enhancementPlans.length === 0 ? <option value="其他">其他</option> : null}
                           </select>
-                          {draft.planOption === "其他" ? (
+                          {enhancementPlans.length === 0 && draft.planOption === "其他" ? (
                             <input
                               aria-label="其他方案名稱"
                               type="text"
@@ -543,6 +620,78 @@ export function EventCatalogTab({
                             </span>
                           ) : null}
                         </label>
+                        {enhancementSessions.length > 1 ? (
+                          <label className="flex flex-col gap-1">
+                            <span className="text-xs font-semibold text-slate-700">場次</span>
+                            <select
+                              aria-label="場次"
+                              value={draft.enhancementSessionId}
+                              onChange={(entryEvent) => {
+                                const matchedSession = enhancementSessions.find(
+                                  (session) =>
+                                    getSessionOptionLabel(
+                                      session.date,
+                                      session.start,
+                                      session.end,
+                                      session.label
+                                    ) === entryEvent.target.value
+                                );
+
+                                setDraftsByEventId((current) => ({
+                                  ...current,
+                                  [event.id]: {
+                                    ...getDraft(event.id, event.actressNames),
+                                    enhancementSessionId: entryEvent.target.value,
+                                    date: matchedSession?.date ?? "",
+                                    start: matchedSession?.start ?? "",
+                                    end: matchedSession?.end ?? ""
+                                  }
+                                }));
+                              }}
+                              className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                            >
+                              <option value="">請選擇場次</option>
+                              {enhancementSessions.map((session) => {
+                                const optionLabel = getSessionOptionLabel(
+                                  session.date,
+                                  session.start,
+                                  session.end,
+                                  session.label
+                                );
+
+                                return (
+                                  <option key={session.sessionId} value={optionLabel}>
+                                    {optionLabel}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </label>
+                        ) : null}
+                        {selectedEnhancementPlan ? (
+                          <div className="rounded-[1rem] bg-white/80 px-3 py-3 ring-1 ring-cyan-100">
+                            {selectedEnhancementPlan.priceLabel ? (
+                              <p className="text-sm font-semibold text-slate-900">
+                                {selectedEnhancementPlan.priceLabel}
+                              </p>
+                            ) : null}
+                            {selectedEnhancementPlan.summary ? (
+                              <p className="mt-1 text-sm text-slate-700">
+                                {selectedEnhancementPlan.summary}
+                              </p>
+                            ) : null}
+                            {selectedEnhancementSession?.outfit ?? selectedEnhancementPlan.outfit ? (
+                              <p className="mt-1 text-sm text-slate-700">
+                                服裝：{selectedEnhancementSession?.outfit ?? selectedEnhancementPlan.outfit}
+                              </p>
+                            ) : null}
+                            {selectedEnhancementSession?.notes ? (
+                              <p className="mt-1 text-xs text-slate-500">
+                                場次備註：{selectedEnhancementSession.notes}
+                              </p>
+                            ) : null}
+                          </div>
+                        ) : null}
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                           <label className="flex flex-col gap-1">
                             <span className="text-xs font-semibold text-slate-700">
@@ -561,6 +710,7 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              readOnly={hasStructuredSessions}
                             />
                             {errors.date ? (
                               <span className="text-xs font-semibold text-rose-600">
@@ -585,6 +735,7 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              readOnly={hasStructuredSessions}
                             />
                             {errors.start ? (
                               <span className="text-xs font-semibold text-rose-600">
@@ -609,6 +760,7 @@ export function EventCatalogTab({
                                 )
                               }
                               className="rounded-xl border-0 bg-white px-3 py-2 text-sm text-slate-700 ring-1 ring-cyan-100"
+                              readOnly={hasStructuredSessions}
                             />
                             {errors.end ? (
                               <span className="text-xs font-semibold text-rose-600">

@@ -1,0 +1,618 @@
+[
+  {
+    "officialEventId": "jkface-event-321",
+    "profiles": [
+      {
+        "personName": "桃園怜奈",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-momozono-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260704-1230", "date": "2026/07/04", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260704-1620", "date": "2026/07/04", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-momozono-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "山田鈴奈",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-yamada-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260704-1230", "date": "2026/07/04", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260704-1620", "date": "2026/07/04", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-yamada-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "Nia",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-nia-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260704-1230", "date": "2026/07/04", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260704-1620", "date": "2026/07/04", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-nia-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "藤森里穗",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-fujimori-20260703-1230", "date": "2026/07/03", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260703-1620", "date": "2026/07/03", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260705-1230", "date": "2026/07/05", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-fujimori-20260705-1620", "date": "2026/07/05", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "丸最稀有",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-maru-20260703-1230", "date": "2026/07/03", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260703-1620", "date": "2026/07/03", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260705-1230", "date": "2026/07/05", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-maru-20260705-1620", "date": "2026/07/05", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "Himari",
+        "plans": [
+          {
+            "planCode": "MEET",
+            "planName": "粉絲見面會",
+            "priceLabel": "3,000 TWD",
+            "summary": "一對一攝影會、合照3張、簽名、握手、1000元商品兌換券",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avcult-himari-20260703-1230", "date": "2026/07/03", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260703-1620", "date": "2026/07/03", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "12:00", "label": "第1場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:30", "label": "第3場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260705-1230", "date": "2026/07/05", "start": "12:30", "end": "13:30", "label": "第2場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:30", "label": "第4場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" },
+              { "sessionId": "avcult-himari-20260705-1620", "date": "2026/07/05", "start": "16:20", "end": "17:10", "label": "第6場", "outfit": null, "notes": "AV CULT時刻表", "sourceType": "image" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "officialEventId": "jkface-event-341",
+    "profiles": [
+      {
+        "personName": "小梅惠奈",
+        "plans": [
+          { "planCode": "A", "planName": "天使誘惑", "priceLabel": "20,000紅鑽", "summary": "拍立得合照1張、手機合照2次、寫真攝影15秒、簽名1項物品", "outfit": null, "sessions": [
+            { "sessionId": "ur-koume-a-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣A", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-a-20260703-1200", "date": "2026/07/03", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣A", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-a-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "比基尼B", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-a-20260704-1200", "date": "2026/07/04", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "比基尼B", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-a-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣C", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-a-20260705-1200", "date": "2026/07/05", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣C", "notes": "小梅惠奈時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "B", "planName": "密慾樂園", "priceLabel": "35,000紅鑽", "summary": "手機合照3次、寫真攝影30秒、簽名2項物品、愛的親密合掌或愛的鼓勵", "outfit": null, "sessions": [
+            { "sessionId": "ur-koume-b-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "OL服", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-b-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "OL服", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-b-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "水手服", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-b-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "水手服", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-b-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "比基尼C", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-b-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "比基尼C", "notes": "小梅惠奈時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "C", "planName": "禁果聖域", "priceLabel": "50,000紅鑽", "summary": "手機合照2次、寫真攝影60秒、簽名1項物品、愛的告白影片10秒", "outfit": null, "sessions": [
+            { "sessionId": "ur-koume-c-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼A", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-c-20260703-1630", "date": "2026/07/03", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼A", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-c-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "性感內衣B", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-c-20260704-1630", "date": "2026/07/04", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "性感內衣B", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-c-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼D", "notes": "小梅惠奈時刻表", "sourceType": "image" },
+            { "sessionId": "ur-koume-c-20260705-1630", "date": "2026/07/05", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼D", "notes": "小梅惠奈時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "D", "planName": "極樂天國", "priceLabel": "55,000紅鑽", "summary": "自由拍立得合照、自由手機合照錄影、自由戀愛聊天與愛的凝視、簽名數量不限", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "松本菜奈實",
+        "plans": [
+          { "planCode": "A", "planName": "天使誘惑", "priceLabel": "20,000紅鑽", "summary": "與小梅惠奈、和樂優香共通A方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-matsumoto-a-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-a-20260703-1200", "date": "2026/07/03", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-a-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "比基尼B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-a-20260704-1200", "date": "2026/07/04", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "比基尼B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-a-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣C", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-a-20260705-1200", "date": "2026/07/05", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣C", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "B", "planName": "密慾樂園", "priceLabel": "35,000紅鑽", "summary": "與小梅惠奈、和樂優香共通B方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-matsumoto-b-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "OL服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-b-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "OL服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-b-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "水手服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-b-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "水手服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-b-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "比基尼C", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-b-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "比基尼C", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "C", "planName": "禁果聖域", "priceLabel": "50,000紅鑽", "summary": "與小梅惠奈、和樂優香共通C方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-matsumoto-c-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-c-20260703-1630", "date": "2026/07/03", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-c-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "性感內衣B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-c-20260704-1630", "date": "2026/07/04", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "性感內衣B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-c-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼D", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-matsumoto-c-20260705-1630", "date": "2026/07/05", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼D", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "D", "planName": "極樂天國", "priceLabel": "55,000紅鑽", "summary": "與小梅惠奈、和樂優香共通D方案", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "和樂優香",
+        "plans": [
+          { "planCode": "A", "planName": "天使誘惑", "priceLabel": "20,000紅鑽", "summary": "與小梅惠奈、松本菜奈實共通A方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-yuuka-a-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-a-20260703-1200", "date": "2026/07/03", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-a-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "比基尼B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-a-20260704-1200", "date": "2026/07/04", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "比基尼B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-a-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣C", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-a-20260705-1200", "date": "2026/07/05", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣C", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "B", "planName": "密慾樂園", "priceLabel": "35,000紅鑽", "summary": "與小梅惠奈、松本菜奈實共通B方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-yuuka-b-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "OL服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-b-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "OL服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-b-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "水手服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-b-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "水手服", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-b-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "比基尼C", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-b-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "比基尼C", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "C", "planName": "禁果聖域", "priceLabel": "50,000紅鑽", "summary": "與小梅惠奈、松本菜奈實共通C方案", "outfit": null, "sessions": [
+            { "sessionId": "ur-yuuka-c-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-c-20260703-1630", "date": "2026/07/03", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼A", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-c-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "性感內衣B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-c-20260704-1630", "date": "2026/07/04", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "性感內衣B", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-c-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼D", "notes": "三人共通時刻表", "sourceType": "image" },
+            { "sessionId": "ur-yuuka-c-20260705-1630", "date": "2026/07/05", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼D", "notes": "三人共通時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "D", "planName": "極樂天國", "priceLabel": "55,000紅鑽", "summary": "與小梅惠奈、松本菜奈實共通D方案", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "倉本堇",
+        "plans": [
+          { "planCode": "A", "planName": "白羽聖域", "priceLabel": "25,000紅鑽", "summary": "拍立得合照1張、手機合照2次、寫真攝影15秒、簽名1項物品", "outfit": null, "sessions": [
+            { "sessionId": "ur-kuramoto-a-20260703-1100", "date": "2026/07/03", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣A", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-a-20260703-1200", "date": "2026/07/03", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣A", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-a-20260704-1100", "date": "2026/07/04", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "比基尼B", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-a-20260704-1200", "date": "2026/07/04", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "比基尼B", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-a-20260705-1100", "date": "2026/07/05", "start": "11:00", "end": "11:50", "label": "第1場", "outfit": "性感內衣C", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-a-20260705-1200", "date": "2026/07/05", "start": "12:00", "end": "12:50", "label": "第2場", "outfit": "性感內衣C", "notes": "倉本堇時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "B", "planName": "誘惑花園", "priceLabel": "40,000紅鑽", "summary": "手機合照3次、寫真攝影30秒、簽名2項物品、愛的親密合掌或愛的鼓勵", "outfit": null, "sessions": [
+            { "sessionId": "ur-kuramoto-b-20260703-1330", "date": "2026/07/03", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "OL服", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-b-20260703-1430", "date": "2026/07/03", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "OL服", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-b-20260704-1330", "date": "2026/07/04", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "水手服", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-b-20260704-1430", "date": "2026/07/04", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "水手服", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-b-20260705-1330", "date": "2026/07/05", "start": "13:30", "end": "14:20", "label": "第3場", "outfit": "比基尼C", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-b-20260705-1430", "date": "2026/07/05", "start": "14:30", "end": "15:20", "label": "第4場", "outfit": "比基尼C", "notes": "倉本堇時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "C", "planName": "禁忌神殿", "priceLabel": "55,000紅鑽", "summary": "手機合照2次、寫真攝影60秒、簽名1項物品、愛的告白影片10秒", "outfit": null, "sessions": [
+            { "sessionId": "ur-kuramoto-c-20260703-1530", "date": "2026/07/03", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼A", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-c-20260703-1630", "date": "2026/07/03", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼A", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-c-20260704-1530", "date": "2026/07/04", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "性感內衣B", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-c-20260704-1630", "date": "2026/07/04", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "性感內衣B", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-c-20260705-1530", "date": "2026/07/05", "start": "15:30", "end": "16:20", "label": "第5場", "outfit": "比基尼D", "notes": "倉本堇時刻表", "sourceType": "image" },
+            { "sessionId": "ur-kuramoto-c-20260705-1630", "date": "2026/07/05", "start": "16:30", "end": "17:20", "label": "第6場", "outfit": "比基尼D", "notes": "倉本堇時刻表", "sourceType": "image" }
+          ]},
+          { "planCode": "D", "planName": "女神王座", "priceLabel": "60,000紅鑽", "summary": "自由拍立得合照、自由手機合照錄影、自由戀愛聊天與愛的凝視、簽名數量不限", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "全員",
+        "plans": [
+          {
+            "planCode": "E",
+            "planName": "女神聖宴",
+            "priceLabel": "30,000紅鑽",
+            "summary": "四人拍立得合照乙張、四人手機合照兩次、四人紀念A4海報與紀念紙卡",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "ur-all-e-20260703-1720", "date": "2026/07/03", "start": "17:20", "end": "17:50", "label": "女神聖宴", "outfit": null, "notes": "四人共同場次", "sourceType": "image" },
+              { "sessionId": "ur-all-e-20260704-1720", "date": "2026/07/04", "start": "17:20", "end": "17:50", "label": "女神聖宴", "outfit": null, "notes": "四人共同場次", "sourceType": "image" },
+              { "sessionId": "ur-all-e-20260705-1720", "date": "2026/07/05", "start": "17:20", "end": "17:50", "label": "女神聖宴", "outfit": null, "notes": "四人共同場次", "sourceType": "image" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "officialEventId": "jkface-event-322",
+    "profiles": [
+      {
+        "personName": "西野繪美",
+        "plans": [
+          { "planCode": "LV1", "planName": "專屬女神拍", "priceLabel": "50,000紅鑽", "summary": "指定女優專屬誘惑姿勢五連拍", "outfit": "制服誘惑主題", "sessions": [] },
+          { "planCode": "LV2", "planName": "專業雙女神拍拍", "priceLabel": "75,000紅鑽", "summary": "雙人角度連續寫真紀念、姿勢體位三連拍", "outfit": "雙女神雙人主題", "sessions": [] },
+          { "planCode": "LV3", "planName": "極限互動", "priceLabel": "100,000紅鑽", "summary": "10秒面香奶茶 + 10秒手掌柔軟體驗", "outfit": "惡魔比基尼主題", "sessions": [] },
+          { "planCode": "LV4", "planName": "沈浸爆發", "priceLabel": "130,000紅鑽", "summary": "30秒騎乘體驗 + AV導演POV視角體驗（含錄影）", "outfit": "聖誕比基尼主題", "sessions": [] }
+        ]
+      },
+      {
+        "personName": "碧那美海",
+        "plans": [
+          { "planCode": "LV1", "planName": "專屬女神拍", "priceLabel": "50,000紅鑽", "summary": "指定女優專屬誘惑姿勢五連拍", "outfit": "制服誘惑主題", "sessions": [] },
+          { "planCode": "LV2", "planName": "專業雙女神拍拍", "priceLabel": "75,000紅鑽", "summary": "雙人角度連續寫真紀念、姿勢體位三連拍", "outfit": "雙女神雙人主題", "sessions": [] },
+          { "planCode": "LV3", "planName": "極限互動", "priceLabel": "100,000紅鑽", "summary": "10秒面香奶茶 + 10秒手掌柔軟體驗", "outfit": "惡魔比基尼主題", "sessions": [] },
+          { "planCode": "LV4", "planName": "沈浸爆發", "priceLabel": "130,000紅鑽", "summary": "30秒騎乘體驗 + AV導演POV視角體驗（含錄影）", "outfit": "聖誕比基尼主題", "sessions": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "officialEventId": "jkface-event-316",
+    "profiles": [
+      {
+        "personName": "金松季步",
+        "plans": [
+          {
+            "planCode": "UP",
+            "planName": "十指緊扣",
+            "priceLabel": "$2800",
+            "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avway-kim-up-20260703-1", "date": "2026/07/03", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260703-2", "date": "2026/07/03", "start": "12:05", "end": "12:40", "label": "第二場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260703-3", "date": "2026/07/03", "start": "13:15", "end": "13:45", "label": "第三場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260704-1", "date": "2026/07/04", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "淑女爆乳紅洋裝", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260704-2", "date": "2026/07/04", "start": "12:05", "end": "12:40", "label": "第二場", "outfit": "淑女爆乳紅洋裝", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260704-3", "date": "2026/07/04", "start": "13:15", "end": "13:45", "label": "第三場", "outfit": "淑女爆乳紅洋裝", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260705-1", "date": "2026/07/05", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260705-2", "date": "2026/07/05", "start": "12:05", "end": "12:40", "label": "第二場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" },
+              { "sessionId": "avway-kim-up-20260705-3", "date": "2026/07/05", "start": "13:15", "end": "13:45", "label": "第三場", "outfit": "比基尼", "notes": "三天上半場內容相同", "sourceType": "image" }
+            ]
+          },
+          {
+            "planCode": "LOW1",
+            "planName": "甜蜜蜜自拍",
+            "priceLabel": "$2800",
+            "summary": "簽名、合照、與女優自拍30秒",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avway-kim-low1-20260703-4", "date": "2026/07/03", "start": "14:10", "end": "14:55", "label": "第四場", "outfit": "御姐透明黑絲襪", "notes": "7/3下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low1-20260703-5", "date": "2026/07/03", "start": "15:10", "end": "15:45", "label": "第五場", "outfit": "御姐透明黑絲襪", "notes": "7/3下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low1-20260703-6", "date": "2026/07/03", "start": "16:15", "end": "16:55", "label": "第六場", "outfit": "御姐透明黑絲襪", "notes": "7/3下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low1-20260703-7", "date": "2026/07/03", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "御姐透明黑絲襪", "notes": "7/3下半場內容", "sourceType": "image" }
+            ]
+          },
+          {
+            "planCode": "LOW2",
+            "planName": "一對一爽拍",
+            "priceLabel": "$2800",
+            "summary": "簽名、合照、一對一個攝30秒",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avway-kim-low2-20260704-4", "date": "2026/07/04", "start": "14:10", "end": "14:55", "label": "第四場", "outfit": "比基尼", "notes": "7/4下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low2-20260704-5", "date": "2026/07/04", "start": "15:10", "end": "15:45", "label": "第五場", "outfit": "比基尼", "notes": "7/4下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low2-20260704-6", "date": "2026/07/04", "start": "16:15", "end": "16:55", "label": "第六場", "outfit": "比基尼", "notes": "7/4下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low2-20260704-7", "date": "2026/07/04", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "比基尼", "notes": "7/4下半場內容", "sourceType": "image" }
+            ]
+          },
+          {
+            "planCode": "LOW3",
+            "planName": "性感結婚式",
+            "priceLabel": "$2800",
+            "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）",
+            "outfit": null,
+            "sessions": [
+              { "sessionId": "avway-kim-low3-20260705-4", "date": "2026/07/05", "start": "14:10", "end": "14:55", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low3-20260705-5", "date": "2026/07/05", "start": "15:10", "end": "15:45", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low3-20260705-6", "date": "2026/07/05", "start": "16:15", "end": "16:55", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場內容", "sourceType": "image" },
+              { "sessionId": "avway-kim-low3-20260705-7", "date": "2026/07/05", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場內容", "sourceType": "image" }
+            ]
+          }
+        ]
+      },
+      {
+        "personName": "福田悠亞",
+        "plans": [
+          { "planCode": "UP", "planName": "十指緊扣", "priceLabel": "$2800", "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-fukuda-up-20260703-1", "date": "2026/07/03", "start": "11:10", "end": "11:55", "label": "第一場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260703-2", "date": "2026/07/03", "start": "12:10", "end": "12:45", "label": "第二場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260703-3", "date": "2026/07/03", "start": "13:20", "end": "13:50", "label": "第三場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260704-1", "date": "2026/07/04", "start": "11:10", "end": "11:55", "label": "第一場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260704-2", "date": "2026/07/04", "start": "12:10", "end": "12:45", "label": "第二場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260704-3", "date": "2026/07/04", "start": "13:20", "end": "13:50", "label": "第三場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260705-1", "date": "2026/07/05", "start": "11:10", "end": "11:55", "label": "第一場", "outfit": "純白高叉配黑絲", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260705-2", "date": "2026/07/05", "start": "12:10", "end": "12:45", "label": "第二場", "outfit": "純白高叉配黑絲", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-up-20260705-3", "date": "2026/07/05", "start": "13:20", "end": "13:50", "label": "第三場", "outfit": "純白高叉配黑絲", "notes": "上半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW1", "planName": "甜蜜蜜自拍", "priceLabel": "$2800", "summary": "簽名、合照、與女優自拍30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-fukuda-low1-20260703-4", "date": "2026/07/03", "start": "14:15", "end": "15:00", "label": "第四場", "outfit": "CK內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low1-20260703-5", "date": "2026/07/03", "start": "15:15", "end": "15:50", "label": "第五場", "outfit": "CK內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low1-20260703-6", "date": "2026/07/03", "start": "16:20", "end": "17:00", "label": "第六場", "outfit": "CK內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low1-20260703-7", "date": "2026/07/03", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "CK內衣", "notes": "7/3下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW2", "planName": "一對一爽拍", "priceLabel": "$2800", "summary": "簽名、合照、一對一個攝30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-fukuda-low2-20260704-4", "date": "2026/07/04", "start": "14:15", "end": "15:00", "label": "第四場", "outfit": "內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low2-20260704-5", "date": "2026/07/04", "start": "15:15", "end": "15:50", "label": "第五場", "outfit": "內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low2-20260704-6", "date": "2026/07/04", "start": "16:20", "end": "17:00", "label": "第六場", "outfit": "內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low2-20260704-7", "date": "2026/07/04", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "內衣", "notes": "7/4下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW3", "planName": "性感結婚式", "priceLabel": "$2800", "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-fukuda-low3-20260705-4", "date": "2026/07/05", "start": "14:15", "end": "15:00", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low3-20260705-5", "date": "2026/07/05", "start": "15:15", "end": "15:50", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low3-20260705-6", "date": "2026/07/05", "start": "16:20", "end": "17:00", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-fukuda-low3-20260705-7", "date": "2026/07/05", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/5下半場", "sourceType": "image" }
+          ]}
+        ]
+      },
+      {
+        "personName": "三好佑香",
+        "plans": [
+          { "planCode": "UP", "planName": "十指緊扣", "priceLabel": "$2800", "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-miyoshi-up-20260703-1", "date": "2026/07/03", "start": "11:00", "end": "11:30", "label": "第一場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260703-2", "date": "2026/07/03", "start": "11:35", "end": "12:20", "label": "第二場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260703-3", "date": "2026/07/03", "start": "12:35", "end": "13:10", "label": "第三場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260704-1", "date": "2026/07/04", "start": "11:00", "end": "11:30", "label": "第一場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260704-2", "date": "2026/07/04", "start": "11:35", "end": "12:20", "label": "第二場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260704-3", "date": "2026/07/04", "start": "12:35", "end": "13:10", "label": "第三場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260705-1", "date": "2026/07/05", "start": "11:00", "end": "11:30", "label": "第一場", "outfit": "透視內衣包臀襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260705-2", "date": "2026/07/05", "start": "11:35", "end": "12:20", "label": "第二場", "outfit": "透視內衣包臀襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-up-20260705-3", "date": "2026/07/05", "start": "12:35", "end": "13:10", "label": "第三場", "outfit": "透視內衣包臀襪", "notes": "上半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW1", "planName": "一對一爽拍", "priceLabel": "$2800", "summary": "簽名、合照、一對一個攝30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-miyoshi-low1-20260703-4", "date": "2026/07/03", "start": "13:45", "end": "14:20", "label": "第四場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low1-20260703-5", "date": "2026/07/03", "start": "14:40", "end": "15:25", "label": "第五場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low1-20260703-6", "date": "2026/07/03", "start": "16:00", "end": "16:40", "label": "第六場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low1-20260703-7", "date": "2026/07/03", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW2", "planName": "性感結婚式", "priceLabel": "$2800", "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-miyoshi-low2-20260704-4", "date": "2026/07/04", "start": "13:45", "end": "14:20", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low2-20260704-5", "date": "2026/07/04", "start": "14:40", "end": "15:25", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low2-20260704-6", "date": "2026/07/04", "start": "16:00", "end": "16:40", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low2-20260704-7", "date": "2026/07/04", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW3", "planName": "甜蜜蜜自拍", "priceLabel": "$2800", "summary": "簽名、合照、與女優自拍30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-miyoshi-low3-20260705-4", "date": "2026/07/05", "start": "13:45", "end": "14:20", "label": "第四場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low3-20260705-5", "date": "2026/07/05", "start": "14:40", "end": "15:25", "label": "第五場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low3-20260705-6", "date": "2026/07/05", "start": "16:00", "end": "16:40", "label": "第六場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-miyoshi-low3-20260705-7", "date": "2026/07/05", "start": "17:05", "end": "17:35", "label": "第七場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" }
+          ]}
+        ]
+      },
+      {
+        "personName": "小笠原菜乃",
+        "plans": [
+          { "planCode": "UP", "planName": "十指緊扣", "priceLabel": "$2800", "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-ogasawara-up-20260703-1", "date": "2026/07/03", "start": "11:05", "end": "11:35", "label": "第一場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260703-2", "date": "2026/07/03", "start": "11:40", "end": "12:25", "label": "第二場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260703-3", "date": "2026/07/03", "start": "12:40", "end": "13:15", "label": "第三場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260704-1", "date": "2026/07/04", "start": "11:05", "end": "11:35", "label": "第一場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260704-2", "date": "2026/07/04", "start": "11:40", "end": "12:25", "label": "第二場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260704-3", "date": "2026/07/04", "start": "12:40", "end": "13:15", "label": "第三場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260705-1", "date": "2026/07/05", "start": "11:05", "end": "11:35", "label": "第一場", "outfit": "桃色女僕膝上襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260705-2", "date": "2026/07/05", "start": "11:40", "end": "12:25", "label": "第二場", "outfit": "桃色女僕膝上襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-up-20260705-3", "date": "2026/07/05", "start": "12:40", "end": "13:15", "label": "第三場", "outfit": "桃色女僕膝上襪", "notes": "上半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW1", "planName": "一對一爽拍", "priceLabel": "$2800", "summary": "簽名、合照、一對一個攝30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-ogasawara-low1-20260703-4", "date": "2026/07/03", "start": "13:50", "end": "14:25", "label": "第四場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low1-20260703-5", "date": "2026/07/03", "start": "14:45", "end": "15:30", "label": "第五場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low1-20260703-6", "date": "2026/07/03", "start": "16:05", "end": "16:45", "label": "第六場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low1-20260703-7", "date": "2026/07/03", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "內衣", "notes": "7/3下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW2", "planName": "性感結婚式", "priceLabel": "$2800", "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-ogasawara-low2-20260704-4", "date": "2026/07/04", "start": "13:50", "end": "14:25", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low2-20260704-5", "date": "2026/07/04", "start": "14:45", "end": "15:30", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low2-20260704-6", "date": "2026/07/04", "start": "16:05", "end": "16:45", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low2-20260704-7", "date": "2026/07/04", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/4下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW3", "planName": "甜蜜蜜自拍", "priceLabel": "$2800", "summary": "簽名、合照、與女優自拍30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-ogasawara-low3-20260705-4", "date": "2026/07/05", "start": "13:50", "end": "14:25", "label": "第四場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low3-20260705-5", "date": "2026/07/05", "start": "14:45", "end": "15:30", "label": "第五場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low3-20260705-6", "date": "2026/07/05", "start": "16:05", "end": "16:45", "label": "第六場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-ogasawara-low3-20260705-7", "date": "2026/07/05", "start": "17:10", "end": "17:40", "label": "第七場", "outfit": "CK內衣", "notes": "7/5下半場", "sourceType": "image" }
+          ]}
+        ]
+      },
+      {
+        "personName": "吉高寧寧",
+        "plans": [
+          { "planCode": "UP", "planName": "十指緊扣", "priceLabel": "$2800", "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-yoshitaka-up-20260703-1", "date": "2026/07/03", "start": "11:00", "end": "11:45", "label": "第一場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260703-2", "date": "2026/07/03", "start": "11:50", "end": "12:20", "label": "第二場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260703-3", "date": "2026/07/03", "start": "12:55", "end": "13:30", "label": "第三場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260704-1", "date": "2026/07/04", "start": "11:00", "end": "11:45", "label": "第一場", "outfit": "極黑兔女郎網襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260704-2", "date": "2026/07/04", "start": "11:50", "end": "12:20", "label": "第二場", "outfit": "極黑兔女郎網襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260704-3", "date": "2026/07/04", "start": "12:55", "end": "13:30", "label": "第三場", "outfit": "極黑兔女郎網襪", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260705-1", "date": "2026/07/05", "start": "11:00", "end": "11:45", "label": "第一場", "outfit": "喵喵女僕細肩帶", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260705-2", "date": "2026/07/05", "start": "11:50", "end": "12:20", "label": "第二場", "outfit": "喵喵女僕細肩帶", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-up-20260705-3", "date": "2026/07/05", "start": "12:55", "end": "13:30", "label": "第三場", "outfit": "喵喵女僕細肩帶", "notes": "上半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW1", "planName": "性感結婚式", "priceLabel": "$2800", "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-yoshitaka-low1-20260703-4", "date": "2026/07/03", "start": "13:55", "end": "14:25", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low1-20260703-5", "date": "2026/07/03", "start": "14:45", "end": "15:25", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low1-20260703-6", "date": "2026/07/03", "start": "16:00", "end": "16:45", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low1-20260703-7", "date": "2026/07/03", "start": "17:00", "end": "17:35", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW2", "planName": "甜蜜蜜自拍", "priceLabel": "$2800", "summary": "簽名、合照、與女優自拍30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-yoshitaka-low2-20260704-4", "date": "2026/07/04", "start": "13:55", "end": "14:25", "label": "第四場", "outfit": "比基尼", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low2-20260704-5", "date": "2026/07/04", "start": "14:45", "end": "15:25", "label": "第五場", "outfit": "比基尼", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low2-20260704-6", "date": "2026/07/04", "start": "16:00", "end": "16:45", "label": "第六場", "outfit": "比基尼", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low2-20260704-7", "date": "2026/07/04", "start": "17:00", "end": "17:35", "label": "第七場", "outfit": "比基尼", "notes": "7/4下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW3", "planName": "一對一爽拍", "priceLabel": "$2800", "summary": "簽名、合照、一對一個攝30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-yoshitaka-low3-20260705-4", "date": "2026/07/05", "start": "13:55", "end": "14:25", "label": "第四場", "outfit": "比基尼", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low3-20260705-5", "date": "2026/07/05", "start": "14:45", "end": "15:25", "label": "第五場", "outfit": "比基尼", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low3-20260705-6", "date": "2026/07/05", "start": "16:00", "end": "16:45", "label": "第六場", "outfit": "比基尼", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-yoshitaka-low3-20260705-7", "date": "2026/07/05", "start": "17:00", "end": "17:35", "label": "第七場", "outfit": "比基尼", "notes": "7/5下半場", "sourceType": "image" }
+          ]}
+        ]
+      },
+      {
+        "personName": "濱邊彌生",
+        "plans": [
+          { "planCode": "UP", "planName": "十指緊扣", "priceLabel": "$2800", "summary": "簽名、合照、十指緊扣、眼神相接10秒（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-hamabe-up-20260703-1", "date": "2026/07/03", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260703-2", "date": "2026/07/03", "start": "11:55", "end": "12:25", "label": "第二場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260703-3", "date": "2026/07/03", "start": "13:00", "end": "13:35", "label": "第三場", "outfit": "內衣", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260704-1", "date": "2026/07/04", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260704-2", "date": "2026/07/04", "start": "11:55", "end": "12:25", "label": "第二場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260704-3", "date": "2026/07/04", "start": "13:00", "end": "13:35", "label": "第三場", "outfit": "比基尼", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260705-1", "date": "2026/07/05", "start": "11:05", "end": "11:50", "label": "第一場", "outfit": "露乳學生辣制服", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260705-2", "date": "2026/07/05", "start": "11:55", "end": "12:25", "label": "第二場", "outfit": "露乳學生辣制服", "notes": "上半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-up-20260705-3", "date": "2026/07/05", "start": "13:00", "end": "13:35", "label": "第三場", "outfit": "露乳學生辣制服", "notes": "上半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW1", "planName": "性感結婚式", "priceLabel": "$2800", "summary": "簽名、合照、性感婚紗結婚式合照*3（工作人員拍照）", "outfit": null, "sessions": [
+            { "sessionId": "avway-hamabe-low1-20260703-4", "date": "2026/07/03", "start": "14:00", "end": "14:30", "label": "第四場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low1-20260703-5", "date": "2026/07/03", "start": "14:50", "end": "15:30", "label": "第五場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low1-20260703-6", "date": "2026/07/03", "start": "16:05", "end": "16:50", "label": "第六場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low1-20260703-7", "date": "2026/07/03", "start": "17:05", "end": "17:40", "label": "第七場", "outfit": "性感薄紗婚紗", "notes": "7/3下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW2", "planName": "甜蜜蜜自拍", "priceLabel": "$2800", "summary": "簽名、合照、與女優自拍30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-hamabe-low2-20260704-4", "date": "2026/07/04", "start": "14:00", "end": "14:30", "label": "第四場", "outfit": "CK內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low2-20260704-5", "date": "2026/07/04", "start": "14:50", "end": "15:30", "label": "第五場", "outfit": "CK內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low2-20260704-6", "date": "2026/07/04", "start": "16:05", "end": "16:50", "label": "第六場", "outfit": "CK內衣", "notes": "7/4下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low2-20260704-7", "date": "2026/07/04", "start": "17:05", "end": "17:40", "label": "第七場", "outfit": "CK內衣", "notes": "7/4下半場", "sourceType": "image" }
+          ]},
+          { "planCode": "LOW3", "planName": "一對一爽拍", "priceLabel": "$2800", "summary": "簽名、合照、一對一個攝30秒", "outfit": null, "sessions": [
+            { "sessionId": "avway-hamabe-low3-20260705-4", "date": "2026/07/05", "start": "14:00", "end": "14:30", "label": "第四場", "outfit": "內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low3-20260705-5", "date": "2026/07/05", "start": "14:50", "end": "15:30", "label": "第五場", "outfit": "內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low3-20260705-6", "date": "2026/07/05", "start": "16:05", "end": "16:50", "label": "第六場", "outfit": "內衣", "notes": "7/5下半場", "sourceType": "image" },
+            { "sessionId": "avway-hamabe-low3-20260705-7", "date": "2026/07/05", "start": "17:05", "end": "17:40", "label": "第七場", "outfit": "內衣", "notes": "7/5下半場", "sourceType": "image" }
+          ]}
+        ]
+      }
+    ]
+  },
+  {
+    "officialEventId": "jkface-event-332",
+    "profiles": [
+      {
+        "personName": "Fury元",
+        "plans": [
+          { "planCode": "S1", "planName": "拍立得＋親筆簽名 or 手機自拍 2選1", "priceLabel": "NT$ 800", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "S2", "planName": "手機影片拍攝 20 秒", "priceLabel": "NT$ 1,100", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "A", "planName": "女神親密拍攝專屬組合", "priceLabel": "NT$ 1,600", "summary": "親密貼貼拍立得拍攝、拍立得親筆簽名、與女神同框手機自拍、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "B", "planName": "女神影片拍攝專屬組合", "priceLabel": "NT$ 2,600", "summary": "手機自拍合照、手機自拍影片20秒、親密貼貼拍立得拍攝、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "C", "planName": "你能忍到什麼程度？", "priceLabel": "NT$ 9,000", "summary": "自拍、雙人合照、拍立得、肩膀按摩、心跳體驗、玉足按摩、臉頰親親、背後環抱、抽獎券4張", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "Juu",
+        "plans": [
+          { "planCode": "S1", "planName": "拍立得＋親筆簽名 or 手機自拍 2選1", "priceLabel": "NT$ 800", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "S2", "planName": "手機影片拍攝 20 秒", "priceLabel": "NT$ 1,100", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "A", "planName": "女神親密拍攝專屬組合", "priceLabel": "NT$ 1,500", "summary": "親密貼貼拍立得拍攝、拍立得親筆簽名、與女神同框手機自拍、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "B", "planName": "女神影片拍攝專屬組合", "priceLabel": "NT$ 2,200", "summary": "手機自拍合照、手機自拍影片20秒、親密貼貼拍立得拍攝、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "C", "planName": "你能忍到什麼程度？", "priceLabel": "NT$ 8,000", "summary": "自拍、雙人合照、拍立得、肩膀按摩、心跳體驗、玉足按摩、臉頰親親、背後環抱、抽獎券4張", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "Mooyoo",
+        "plans": [
+          { "planCode": "S1", "planName": "拍立得＋親筆簽名 or 手機自拍 2選1", "priceLabel": "NT$ 800", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "S2", "planName": "手機影片拍攝 20 秒", "priceLabel": "NT$ 1,100", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "A", "planName": "女神親密拍攝專屬組合", "priceLabel": "NT$ 1,500", "summary": "親密貼貼拍立得拍攝、拍立得親筆簽名、與女神同框手機自拍、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "B", "planName": "女神影片拍攝專屬組合", "priceLabel": "NT$ 2,200", "summary": "手機自拍合照、手機自拍影片20秒、親密貼貼拍立得拍攝、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "MomoRina モモリナ",
+        "plans": [
+          { "planCode": "S1", "planName": "拍立得＋親筆簽名 or 手機自拍 2選1", "priceLabel": "NT$ 800", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "S2", "planName": "手機影片拍攝 20 秒", "priceLabel": "NT$ 1,100", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "A", "planName": "女神親密拍攝專屬組合", "priceLabel": "NT$ 1,500", "summary": "親密貼貼拍立得拍攝、拍立得親筆簽名、與女神同框手機自拍、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "B", "planName": "女神影片拍攝專屬組合", "priceLabel": "NT$ 2,200", "summary": "手機自拍合照、手機自拍影片20秒、親密貼貼拍立得拍攝、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] }
+        ]
+      },
+      {
+        "personName": "Eguny",
+        "plans": [
+          { "planCode": "S1", "planName": "拍立得＋親筆簽名 or 手機自拍 2選1", "priceLabel": "NT$ 800", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "S2", "planName": "手機影片拍攝 20 秒", "priceLabel": "NT$ 1,100", "summary": "互動5選1：勾手臂 / 牽手 / 搭肩膀 / 比愛心 / 十指緊扣", "outfit": null, "sessions": [] },
+          { "planCode": "A", "planName": "女神親密拍攝專屬組合", "priceLabel": "NT$ 1,500", "summary": "親密貼貼拍立得拍攝、拍立得親筆簽名、與女神同框手機自拍、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "B", "planName": "女神影片拍攝專屬組合", "priceLabel": "NT$ 2,200", "summary": "手機自拍合照、手機自拍影片20秒、親密貼貼拍立得拍攝、贈送限量小卡與抽獎券", "outfit": null, "sessions": [] },
+          { "planCode": "C", "planName": "你能忍到什麼程度？", "priceLabel": "NT$ 8,000", "summary": "自拍、雙人合照、拍立得、肩膀按摩、心跳體驗、玉足按摩、臉頰親親、背後環抱、抽獎券4張", "outfit": null, "sessions": [] }
+        ]
+      }
+    ]
+  },
+  {
+    "officialEventId": "jkface-event-311",
+    "profiles": [
+      {
+        "personName": "彌生美月",
+        "plans": [
+          { "planCode": "W1", "planName": "夢幻新婚生活①", "priceLabel": "40,000紅鑽", "summary": "女優圍裙迎接、擁抱、牽手耳語愛語、手機合照×3、拍立得×1、簽名、宣傳寫真、膝枕體驗", "outfit": "圍裙", "sessions": [] },
+          { "planCode": "W2", "planName": "夢幻新婚生活②", "priceLabel": "40,000紅鑽", "summary": "女優圍裙迎接、擁抱、按摩＆耳邊低語、手機合照×3、拍立得×1、簽名、宣傳寫真", "outfit": "圍裙", "sessions": [] },
+          { "planCode": "L1", "planName": "戀人對談", "priceLabel": "30,000紅鑽", "summary": "聊天情境或擁抱後1分鐘自由互動二選一", "outfit": null, "sessions": [] },
+          { "planCode": "G1", "planName": "遊戲大賽", "priceLabel": "30,000紅鑽", "summary": "猜方向遊戲或趣味曖昧遊戲二選一；彌生美月的遊戲2改為束縛女優並拍攝手機合照x1", "outfit": "裙裝系互動服", "sessions": [] },
+          { "planCode": "H1", "planName": "後宮合照會", "priceLabel": "20,000紅鑽", "summary": "與KMP攤位全體女優手機合照×3；7/4場次調整為手機合照×5", "outfit": null, "sessions": [] },
+          { "planCode": "P1", "planName": "拍立得合照會", "priceLabel": "20,000紅鑽", "summary": "女優擁抱、拍立得合照×1、手機合照×2。服裝依日期變換：7/3 囚服、7/4 浴衣、7/5 制服", "outfit": "7/3 囚服 / 7/4 浴衣 / 7/5 制服", "sessions": [] },
+          { "planCode": "S1", "planName": "粉絲握手會", "priceLabel": "15,000紅鑽", "summary": "與女優握手、手機合照×2、宣傳寫真", "outfit": null, "sessions": [] },
+          { "planCode": "A+", "planName": "AV+粉絲握手會", "priceLabel": "請至AV+活動頁面確認", "summary": "與女優握手、宣傳寫真", "outfit": null, "sessions": [] }
+        ]
+      }
+    ]
+  }
+]
